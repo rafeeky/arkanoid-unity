@@ -1,0 +1,53 @@
+# 기본 — 텍스트 파일 자동 감지 + LF 강제 (Windows/WSL line ending 차이 차단)
+* text=auto eol=lf
+
+# C# 코드
+*.cs text eol=lf diff=csharp
+
+# 일반 텍스트
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+*.hlsl text eol=lf
+
+# Unity YAML 자산 — text 로 다루고 unityyamlmerge 사용 시 충돌 자동 머지
+# (unityyamlmerge driver 는 git config 에 등록 필요. 단독 작업이면 그냥 text 로 다루면 됨)
+*.meta text eol=lf merge=unityyamlmerge
+*.unity text eol=lf merge=unityyamlmerge
+*.prefab text eol=lf merge=unityyamlmerge
+*.asset text eol=lf merge=unityyamlmerge
+*.mat text eol=lf merge=unityyamlmerge
+*.anim text eol=lf merge=unityyamlmerge
+*.controller text eol=lf merge=unityyamlmerge
+*.physicMaterial text eol=lf merge=unityyamlmerge
+*.physicsMaterial2D text eol=lf merge=unityyamlmerge
+
+# 바이너리 (diff 안 함, line ending 변환 안 함)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.tga binary
+*.psd binary
+*.tif binary
+*.tiff binary
+*.fbx binary
+*.obj binary
+*.3ds binary
+*.blend binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.aif binary
+*.aiff binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.7z binary
+*.rar binary
