@@ -62,3 +62,6 @@ crashlytics-build.properties
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Session handoff notes (local-only)
+HANDOFF.md
