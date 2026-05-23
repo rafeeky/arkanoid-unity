@@ -1,0 +1,27 @@
+{
+    "name": "Arkanoid.Gameplay.Tests",
+    "rootNamespace": "Arkanoid.Gameplay.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Arkanoid.Shared",
+        "Arkanoid.Definitions",
+        "Arkanoid.Gameplay",
+        "Arkanoid.Flow"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

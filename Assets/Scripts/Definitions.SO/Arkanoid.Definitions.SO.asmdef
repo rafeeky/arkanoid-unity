@@ -1,0 +1,17 @@
+{
+    "name": "Arkanoid.Definitions.SO",
+    "rootNamespace": "Arkanoid.Definitions.SO",
+    "references": [
+        "Arkanoid.Shared",
+        "Arkanoid.Definitions"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Arkanoid.Gameplay",
+    "rootNamespace": "Arkanoid.Gameplay",
+    "references": [
+        "Arkanoid.Shared",
+        "Arkanoid.Definitions"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

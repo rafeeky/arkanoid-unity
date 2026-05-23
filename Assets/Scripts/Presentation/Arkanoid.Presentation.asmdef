@@ -1,0 +1,20 @@
+{
+    "name": "Arkanoid.Presentation",
+    "rootNamespace": "Arkanoid.Presentation",
+    "references": [
+        "Arkanoid.Shared",
+        "Arkanoid.Definitions",
+        "Arkanoid.Definitions.SO",
+        "Arkanoid.Gameplay",
+        "Arkanoid.Flow"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
