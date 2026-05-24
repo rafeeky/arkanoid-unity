@@ -5,6 +5,7 @@ using Arkanoid.Definitions;
 using Arkanoid.Definitions.SO;
 using Arkanoid.Flow;
 using Arkanoid.Gameplay;
+using Arkanoid.Presentation.View;
 
 namespace Arkanoid.Presentation
 {
@@ -34,6 +35,32 @@ namespace Arkanoid.Presentation
 
         [Header("Camera + UI roots")]
         [SerializeField] private Camera mainCamera;
+
+        [Header("View — Gameplay 렌더러 (Bind 매 프레임)")]
+        [SerializeField] private BarRenderer barRenderer;
+        [SerializeField] private BallsRenderer ballsRenderer;
+        [SerializeField] private BlocksRenderer blocksRenderer;
+        [SerializeField] private BordersRenderer bordersRenderer;
+        [SerializeField] private DoorsRenderer doorsRenderer;
+        [SerializeField] private SpinnersRenderer spinnersRenderer;
+        [SerializeField] private ItemsRenderer itemsRenderer;
+        [SerializeField] private LaserShotsRenderer laserShotsRenderer;
+        [SerializeField] private BallTrailRenderer ballTrailRenderer;
+        [SerializeField] private MascotRenderer mascotRenderer;
+
+        [Header("View — Panel + Router")]
+        [SerializeField] private ScreenRouter screenRouter;
+        [SerializeField] private TitlePanel titlePanel;
+        [SerializeField] private IntroStoryPanel introStoryPanel;
+        [SerializeField] private RoundIntroPanel roundIntroPanel;
+        [SerializeField] private InGamePanel inGamePanel;
+        [SerializeField] private GameOverPanel gameOverPanel;
+        [SerializeField] private GameClearPanel gameClearPanel;
+        [SerializeField] private PauseOverlay pauseOverlay;
+        [SerializeField] private ToastView toastView;
+
+        [Header("Audio — UnityAudio 컴포넌트 있으면 NoopAudio 대신 사용")]
+        [SerializeField] private UnityAudio unityAudio;
 
         // ─── Runtime services ───
 
@@ -92,7 +119,7 @@ namespace Arkanoid.Presentation
 
             // Audio + UI text.
             _audioCueResolver = new AudioCueResolver(audioCueSO != null ? audioCueSO.Data : new List<AudioCueEntry>());
-            _audio = new NoopAudio();  // Phase 3 단계 — UnityAudio 구현 시 교체.
+            _audio = unityAudio != null ? (IArkanoidAudio)unityAudio : new NoopAudio();
 
             // Initial gameplay state — stage 0.
             GameplayRuntimeState initialState;
@@ -152,6 +179,67 @@ namespace Arkanoid.Presentation
 
             // 4. ScreenDirector update — VisualEffectController + PresentationEvent.
             _screenDirector.Update(_gameFlowController.GetState(), dtMs, OnPresentationEvent);
+
+            // 5. View bind — Renderer/Panel 매 프레임 동기화.
+            BindViews();
+        }
+
+        private void BindViews()
+        {
+            var flowState = _gameFlowController.GetState();
+            var screenState = _screenDirector.GetScreenState();
+            var gameplay = _gameplayController.GetState();
+            var uiTexts = uiTextSO != null ? uiTextSO.Data : new List<UITextEntry>();
+
+            if (screenRouter != null) screenRouter.Apply(flowState.Kind);
+
+            // Gameplay 렌더러 — InGame/RoundIntro 일 때 표시.
+            var showGameplay = flowState.Kind == FlowStateKind.InGame
+                            || flowState.Kind == FlowStateKind.RoundIntro;
+            if (showGameplay)
+            {
+                if (barRenderer != null) barRenderer.Bind(gameplay.Bar);
+                if (ballsRenderer != null) ballsRenderer.Bind(gameplay.Balls);
+                if (blocksRenderer != null) blocksRenderer.Bind(gameplay.Blocks, screenState.BlockHitFlashBlockIds);
+                if (bordersRenderer != null) bordersRenderer.Bind(gameplay.Borders);
+                if (doorsRenderer != null) doorsRenderer.Bind(gameplay.Doors);
+                if (spinnersRenderer != null) spinnersRenderer.Bind(gameplay.SpinnerStates);
+                if (itemsRenderer != null) itemsRenderer.Bind(gameplay.ItemDrops);
+                if (laserShotsRenderer != null) laserShotsRenderer.Bind(gameplay.LaserShots);
+                if (ballTrailRenderer != null) ballTrailRenderer.Bind(gameplay.Balls, gameplay.CurrentTrailStyle);
+            }
+
+            // Panel binds.
+            switch (flowState.Kind)
+            {
+                case FlowStateKind.Title:
+                    if (titlePanel != null)
+                        titlePanel.Bind(_screenPresenter.BuildTitleViewModel(gameplay.Session, uiTexts));
+                    break;
+                case FlowStateKind.IntroStory:
+                    if (introStoryPanel != null && introSequenceSO != null)
+                        introStoryPanel.Bind(_screenPresenter.BuildIntroScreenViewModel(
+                            screenState.IntroPageIndex, screenState.IntroTypingProgress,
+                            screenState.IntroPhase, introSequenceSO.Data));
+                    break;
+                case FlowStateKind.RoundIntro:
+                    if (roundIntroPanel != null)
+                        roundIntroPanel.Bind(_screenPresenter.BuildRoundIntroViewModel(
+                            gameplay.Session, uiTexts, screenState.RoundIntroRemainingTime, _config.RoundIntroDurationMs));
+                    break;
+                case FlowStateKind.InGame:
+                    if (inGamePanel != null)
+                        inGamePanel.Bind(_hudPresenter.BuildHudViewModel(gameplay));
+                    break;
+                case FlowStateKind.GameOver:
+                    if (gameOverPanel != null)
+                        gameOverPanel.Bind(_screenPresenter.BuildGameOverViewModel(gameplay.Session, uiTexts));
+                    break;
+                case FlowStateKind.GameClear:
+                    if (gameClearPanel != null)
+                        gameClearPanel.Bind(_screenPresenter.BuildGameClearViewModel(gameplay.Session, uiTexts));
+                    break;
+            }
         }
 
         // ─── Event routing ───
