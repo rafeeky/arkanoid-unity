@@ -5,8 +5,13 @@ namespace Arkanoid.Gameplay
     // 플레이필드 좌표계의 *단일 진실 소스 (SSOT)*. 게임 런타임 (StageRuntimeFactory,
     // MovementSystem, CollisionService 등) 과 편집기가 모두 여기서 참조.
     //
-    // 좌표계: 플레이필드 로컬 (0..720, 0..720). 게임 캔버스 (1080×1920) 와는 별개.
-    // 메인 카메라가 zoom 1.5 + centerOn 으로 화면 표시.
+    // 좌표계: 플레이필드 로컬 (0..720, 0..720). TS 원본의 **Y+ 아래** (좌상단 (0,0)) 유지.
+    //   - Y 증가 = 화면 *아래*
+    //   - 공이 위로 이동 = vy *음수*
+    //   - 게임 캔버스 (1080×1920) 와는 별개. 카메라 zoom 1.5 + centerOn 으로 표시.
+    //
+    // Unity world 좌표 (Y+ 위, 1 unit = 1 px — D3.4) 로의 변환은 *Phase 3 카메라/렌더* 단계에서
+    // Y flip 으로 처리. Phase 1~2 의 알고리즘 코드는 TS 와 비트 단위 동일 (968 테스트 그대로 통과 목표).
     public static class PlayfieldLayout
     {
         // ─── 플레이필드 (논리 좌표계) — LayoutConfig 가 SSOT ───
