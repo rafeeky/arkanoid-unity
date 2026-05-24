@@ -52,8 +52,8 @@ namespace Arkanoid.Gameplay.Tests
         [Test]
         public void Ball_BelowFloor_DetectsFloor()
         {
-            // PlayfieldHeight 720, ball radius 8 → y - 8 > 720 → y > 728.
-            var ball = ActiveBall(x: 400f, y: 740f);
+            // PlayfieldHeight 900, ball radius 8 → y - 8 > 900 → y > 908.
+            var ball = ActiveBall(x: 400f, y: 920f);
             var state = MakeState(balls: new[] { ball });
             var facts = CollisionService.DetectCollisions(state, state);
             Assert.That(facts, Has.Member(new BallHitFloorFact("ball_0")));
@@ -62,7 +62,7 @@ namespace Arkanoid.Gameplay.Tests
         [Test]
         public void Ball_AboveFloor_DoesNotDetect()
         {
-            var ball = ActiveBall(x: 400f, y: 700f);
+            var ball = ActiveBall(x: 400f, y: 880f);
             var state = MakeState(balls: new[] { ball });
             var facts = CollisionService.DetectCollisions(state, state);
             Assert.IsFalse(facts.Any(f => f is BallHitFloorFact));
@@ -224,7 +224,8 @@ namespace Arkanoid.Gameplay.Tests
         [Test]
         public void ItemBelowFloor_DetectsFellOff()
         {
-            var item = new ItemDropState("item_0", ItemType.Expand, X: 300f, Y: 740f, FallSpeed: 160f, IsCollected: false);
+            // PlayfieldHeight 900 — y > 900 면 fell off.
+            var item = new ItemDropState("item_0", ItemType.Expand, X: 300f, Y: 920f, FallSpeed: 160f, IsCollected: false);
             var state = MakeState(itemDrops: new[] { item });
             var facts = CollisionService.DetectCollisions(state, state);
             Assert.That(facts, Has.Member(new ItemFellOffFloorFact("item_0")));
@@ -233,7 +234,7 @@ namespace Arkanoid.Gameplay.Tests
         [Test]
         public void CollectedItem_NoFellOffDetection()
         {
-            var item = new ItemDropState("item_0", ItemType.Expand, X: 300f, Y: 740f, FallSpeed: 160f, IsCollected: true);
+            var item = new ItemDropState("item_0", ItemType.Expand, X: 300f, Y: 920f, FallSpeed: 160f, IsCollected: true);
             var state = MakeState(itemDrops: new[] { item });
             var facts = CollisionService.DetectCollisions(state, state);
             Assert.IsFalse(facts.Any(f => f is ItemFellOffFloorFact));
