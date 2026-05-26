@@ -6,7 +6,8 @@ using Arkanoid.Gameplay;
 
 namespace Arkanoid.Presentation.View
 {
-    // 블록 인스턴스 Pool. BlockDefinition 색/내구도 시각화.
+    // 블록 인스턴스 Pool. BlockDefinition 별 sprite swap (TS 의 PNG 패턴과 동일).
+    // Sprite 가 없으면 BaseColor tint 만 적용 (구버전 placeholder fallback).
     // BlockHitFlashBlockIds (ScreenState) 로 hit 시 깜빡임.
     public sealed class BlocksRenderer : MonoBehaviour
     {
@@ -14,17 +15,27 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Transform poolRoot;
         [SerializeField] private List<BlockDefinitionSO> blockDefinitionSOs = new();
 
+        // definitionId → sprite 매핑 (TS public/assets/blocks/block_<visualId>.png 와 1:1).
+        [System.Serializable]
+        public struct SpriteEntry { public string DefinitionId; public Sprite Sprite; }
+        [SerializeField] private SpriteEntry[] spriteEntries = new SpriteEntry[0];
+
         [SerializeField] private Color flashColor = Color.white;
         [SerializeField] private Color defaultColor = new(0.6f, 0.6f, 0.6f, 1f);
+
+        // 한 블럭의 표시 크기 (px). Block prefab 의 scale 대신 코드에서 통일 (Pool 인스턴스의 scale 을 강제).
+        [SerializeField] private float blockWidthPx = 64f;
+        [SerializeField] private float blockHeightPx = 24f;
 
         private readonly List<GameObject> _instances = new();
         private readonly List<SpriteRenderer> _sprites = new();
         private readonly Dictionary<string, BlockDefinition> _defs = new();
+        private readonly Dictionary<string, Sprite> _spriteMap = new();
         private bool _defsInitialized;
 
         public void Bind(IReadOnlyList<BlockState> blocks, IReadOnlyList<string> flashIds)
         {
-            EnsureDefs();
+            EnsureMaps();
             EnsureCapacity(blocks.Count);
 
             var flashSet = new HashSet<string>(flashIds);
@@ -37,18 +48,36 @@ namespace Arkanoid.Presentation.View
                 go.SetActive(visible);
                 if (!visible) continue;
 
-                go.transform.position = new Vector3(b.X, b.Y, 0f);
+                go.transform.localPosition = new Vector3(b.X, b.Y, 0f);
                 if (_sprites[i] == null) continue;
 
-                if (flashSet.Contains(b.Id))
+                // sprite swap — TS 처럼 PNG 색상이 sprite 자체에 들어 있음.
+                if (_spriteMap.TryGetValue(b.DefinitionId, out var sp) && sp != null)
                 {
-                    _sprites[i].color = flashColor;
+                    _sprites[i].sprite = sp;
+                    // sprite 자체 색을 그대로 보이게 white tint (flash 가 아니면).
+                    if (flashSet.Contains(b.Id)) _sprites[i].color = flashColor;
+                    else _sprites[i].color = Color.white;
+                    // 표시 크기 — sprite native size 가 750×286 등 다양하므로 prefab scale 로 boxFit.
+                    var nw = sp.rect.width;
+                    var nh = sp.rect.height;
+                    var sx = nw > 0f ? blockWidthPx / nw : 1f;
+                    var sy = nh > 0f ? blockHeightPx / nh : 1f;
+                    go.transform.localScale = new Vector3(sx, sy, 1f);
                 }
                 else
                 {
-                    _sprites[i].color = _defs.TryGetValue(b.DefinitionId, out var def)
-                        ? HexToColor(def.BaseColor)
-                        : defaultColor;
+                    // sprite 없으면 fallback: 회색 사각 (구버전 동작).
+                    if (flashSet.Contains(b.Id))
+                    {
+                        _sprites[i].color = flashColor;
+                    }
+                    else
+                    {
+                        _sprites[i].color = _defs.TryGetValue(b.DefinitionId, out var def)
+                            ? HexToColor(def.BaseColor)
+                            : defaultColor;
+                    }
                 }
             }
 
@@ -56,7 +85,7 @@ namespace Arkanoid.Presentation.View
                 _instances[i].SetActive(false);
         }
 
-        private void EnsureDefs()
+        private void EnsureMaps()
         {
             if (_defsInitialized) return;
             _defsInitialized = true;
@@ -65,6 +94,11 @@ namespace Arkanoid.Presentation.View
                 if (so == null) continue;
                 var d = so.Data;
                 _defs[d.DefinitionId] = d;
+            }
+            foreach (var e in spriteEntries)
+            {
+                if (string.IsNullOrEmpty(e.DefinitionId) || e.Sprite == null) continue;
+                _spriteMap[e.DefinitionId] = e.Sprite;
             }
         }
 

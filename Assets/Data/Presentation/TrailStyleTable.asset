@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d169ac58c4dff243b91fb0a9122dd6d, type: 3}
+  m_Name: TrailStyleTable
+  m_EditorClassIdentifier: Arkanoid.Definitions.SO::Arkanoid.Definitions.SO.TrailStyleSO
+  goldenSun:
+    headColor: 16767812
+    tailColor: 16737826
+    glowColor: 16755251
+    segmentCount: 16
+    headAlpha: 0.95
+    segmentRadius: 9
+    pushIntervalMs: 18
+  blueMeteor:
+    headColor: 15663103
+    tailColor: 4491007
+    glowColor: 6728959
+    segmentCount: 16
+    headAlpha: 0.95
+    segmentRadius: 9
+    pushIntervalMs: 18
+  sunset:
+    headColor: 16746086
+    tailColor: 16729770
+    glowColor: 16737928
+    segmentCount: 16
+    headAlpha: 0.95
+    segmentRadius: 9
+    pushIntervalMs: 18

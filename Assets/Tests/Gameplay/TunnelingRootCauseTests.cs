@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NUnit.Framework;
 using Arkanoid.Definitions;
 using static Arkanoid.Gameplay.Tests.TestHelpers;

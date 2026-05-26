@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: bc3413ba82ffb194fbf94af3ee7edc3a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1376278525023598380
+    second: kongming_0
+  - first:
+      213: -2862797902873942074
+    second: kongming_1
+  - first:
+      213: -7196507724528913037
+    second: kongming_2
+  - first:
+      213: -8387346228506397004
+    second: kongming_3
+  - first:
+      213: -7211955469171575872
+    second: kongming_4
+  - first:
+      213: -8703889955721498227
+    second: kongming_5
+  - first:
+      213: 8194726590139365530
+    second: kongming_6
+  - first:
+      213: -1407289230349944068
+    second: kongming_7
+  - first:
+      213: 8286147254502984332
+    second: kongming_8
+  - first:
+      213: -2413345113629142171
+    second: kongming_9
+  - first:
+      213: 4713785831053667535
+    second: kongming_10
+  - first:
+      213: 8309743082645120170
+    second: kongming_11
+  - first:
+      213: -5217842038685859395
+    second: kongming_12
+  - first:
+      213: -8518599942370609227
+    second: kongming_13
+  - first:
+      213: 3022779566218022702
+    second: kongming_14
+  - first:
+      213: -6756388556818734896
+    second: kongming_15
+  - first:
+      213: 5711039455501220371
+    second: kongming_16
+  - first:
+      213: -1287275359843563766
+    second: kongming_17
+  - first:
+      213: 2594735338894381252
+    second: kongming_18
+  - first:
+      213: 9039679303210320925
+    second: kongming_19
+  - first:
+      213: 8495113388393365739
+    second: kongming_20
+  - first:
+      213: -1316012213246910137
+    second: kongming_21
+  - first:
+      213: 3112241706546267725
+    second: kongming_22
+  - first:
+      213: -4914529683219392371
+    second: kongming_23
+  - first:
+      213: 4166478977482004150
+    second: kongming_24
+  - first:
+      213: 5320103982639285410
+    second: kongming_25
+  - first:
+      213: -5819401986613349867
+    second: kongming_26
+  - first:
+      213: 842505413512447448
+    second: kongming_27
+  - first:
+      213: -8934652482408262947
+    second: kongming_28
+  - first:
+      213: -5417606440518405585
+    second: kongming_29
+  - first:
+      213: 2174790916882164768
+    second: kongming_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kongming_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 225
+        width: 812
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27b704d606891310800000000000000
+      internalID: 1376278525023598380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_1
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 660
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c7277f997c4548d0800000000000000
+      internalID: -2862797902873942074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_2
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 660
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37579107a5ed02c90800000000000000
+      internalID: -7196507724528913037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_3
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 660
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6f9a11b092a9b80800000000000000
+      internalID: -8387346228506397004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_4
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 660
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c3b71c16bcf9eb90800000000000000
+      internalID: -7211955469171575872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_5
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 630
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8131215332953780800000000000000
+      internalID: -8703889955721498227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_6
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 594
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9874bc8a6489b170800000000000000
+      internalID: 8194726590139365530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_7
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 591
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa32c0b6ed487ce0800000000000000
+      internalID: -1407289230349944068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_8
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 597
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a8a3da60f4ef270800000000000000
+      internalID: 8286147254502984332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_9
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 587
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 563d5b5d763128ed0800000000000000
+      internalID: -2413345113629142171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_10
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 545
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcc29371d3bba6140800000000000000
+      internalID: 4713785831053667535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_11
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 545
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa462d78e43225370800000000000000
+      internalID: 8309743082645120170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_12
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 486
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db18706af408697b0800000000000000
+      internalID: -5217842038685859395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_13
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 472
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b736536c7ad7c980800000000000000
+      internalID: -8518599942370609227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_14
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 440
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f0cb6000213f920800000000000000
+      internalID: 3022779566218022702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_15
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 378
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d02e4a876c7c32a0800000000000000
+      internalID: -6756388556818734896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_16
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 366
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31af36b5020b14f40800000000000000
+      internalID: 5711039455501220371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_17
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 357
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07496861eda22ee0800000000000000
+      internalID: -1287275359843563766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_18
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 346
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c0d3f01b0a520420800000000000000
+      internalID: 2594735338894381252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_19
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 332
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d144d479e64637d70800000000000000
+      internalID: 9039679303210320925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_20
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 326
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be00ad12e94b4e570800000000000000
+      internalID: 8495113388393365739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_21
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 298
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741a7555dd59cbde0800000000000000
+      internalID: -1316012213246910137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_22
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 284
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4688ddb757e03b20800000000000000
+      internalID: 3112241706546267725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_23
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 284
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8858999a451ccbb0800000000000000
+      internalID: -4914529683219392371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_24
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 280
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b692f81e8e42d930800000000000000
+      internalID: 4166478977482004150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_25
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 253
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a40b55926ec4d940800000000000000
+      internalID: 5320103982639285410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_26
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 253
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51275b6c9b45d3fa0800000000000000
+      internalID: -5819401986613349867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_27
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 244
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d5c0c5b53e21bb00800000000000000
+      internalID: 842505413512447448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_28
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 241
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd25e72b7ecb10480800000000000000
+      internalID: -8934652482408262947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_29
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 232
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f22380465abc0d4b0800000000000000
+      internalID: -5417606440518405585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kongming_30
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 225
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ce18df0d86e2e10800000000000000
+      internalID: 2174790916882164768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kongming_0: 1376278525023598380
+      kongming_1: -2862797902873942074
+      kongming_10: 4713785831053667535
+      kongming_11: 8309743082645120170
+      kongming_12: -5217842038685859395
+      kongming_13: -8518599942370609227
+      kongming_14: 3022779566218022702
+      kongming_15: -6756388556818734896
+      kongming_16: 5711039455501220371
+      kongming_17: -1287275359843563766
+      kongming_18: 2594735338894381252
+      kongming_19: 9039679303210320925
+      kongming_2: -7196507724528913037
+      kongming_20: 8495113388393365739
+      kongming_21: -1316012213246910137
+      kongming_22: 3112241706546267725
+      kongming_23: -4914529683219392371
+      kongming_24: 4166478977482004150
+      kongming_25: 5320103982639285410
+      kongming_26: -5819401986613349867
+      kongming_27: 842505413512447448
+      kongming_28: -8934652482408262947
+      kongming_29: -5417606440518405585
+      kongming_3: -8387346228506397004
+      kongming_30: 2174790916882164768
+      kongming_4: -7211955469171575872
+      kongming_5: -8703889955721498227
+      kongming_6: 8194726590139365530
+      kongming_7: -1407289230349944068
+      kongming_8: 8286147254502984332
+      kongming_9: -2413345113629142171
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

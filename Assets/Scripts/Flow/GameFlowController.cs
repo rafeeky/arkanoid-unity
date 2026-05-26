@@ -42,6 +42,15 @@ namespace Arkanoid.Flow
             if (cmd != null) ApplyCommand(cmd);
         }
 
+        // UI 직접 호출용 — Title NORMAL/HARD 버튼 onClick → 난이도 설정 + 게임 시작.
+        public void RequestStartGame(DifficultyKind difficulty)
+        {
+            ApplyCommand(difficulty == DifficultyKind.Hard
+                ? (FlowCommand)new DifficultySelectHardCommand()
+                : new DifficultySelectNormalCommand());
+            ApplyCommand(new StartGameRequestedCommand());
+        }
+
         private FlowCommand? TranslateGameplayEvent(GameplayEvent ev)
         {
             switch (ev)

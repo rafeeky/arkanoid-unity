@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f632099964276c458cdd10a987869d7, type: 3}
+  m_Name: MascotTable
+  m_EditorClassIdentifier: Arkanoid.Definitions.SO::Arkanoid.Definitions.SO.MascotSO
+  entries:
+  - id: albatross
+    displayName: ALBATROSS
+    subtitle: "\uC54C\uBC14\uD2B8\uB85C\uC2A4"
+    unlockCost: 0
+    placeholderColor: 16777215
+    placeholderStrokeColor: 6710886
+    spriteFrameIds:
+    - mascot.albatross.frame0
+    - mascot.albatross.frame1
+    - mascot.albatross.frame2
+    - mascot.albatross.frame3
+  - id: kongming
+    displayName: KONGMING
+    subtitle: "\uCF69\uBC0D\uC774 (\uD584\uC2A4\uD130)"
+    unlockCost: 100
+    placeholderColor: 16769184
+    placeholderStrokeColor: 13144160
+    spriteFrameIds:
+    - mascot.kongming.frame0
+    - mascot.kongming.frame1
+    - mascot.kongming.frame2
+    - mascot.kongming.frame3
+  - id: snowrabbit
+    displayName: SNOW RABBIT
+    subtitle: "\uB208\uD1A0\uB07C"
+    unlockCost: 300
+    placeholderColor: 15398143
+    placeholderStrokeColor: 8956620
+    spriteFrameIds:
+    - mascot.snowrabbit.frame0
+    - mascot.snowrabbit.frame1
+    - mascot.snowrabbit.frame2
+    - mascot.snowrabbit.frame3
+  - id: reaper
+    displayName: REAPER
+    subtitle: "\uC800\uC2B9\uC774 (\uD574\uACE8)"
+    unlockCost: 600
+    placeholderColor: 4473958
+    placeholderStrokeColor: 11184093
+    spriteFrameIds:
+    - mascot.reaper.frame0
+    - mascot.reaper.frame1
+    - mascot.reaper.frame2
+    - mascot.reaper.frame3
+  - id: seraphin
+    displayName: SERAPHIN
+    subtitle: "\uC138\uB77C\uD540 (\uBD84\uD64D \uC138\uC774\uB80C)"
+    unlockCost: 1000
+    placeholderColor: 16756944
+    placeholderStrokeColor: 13395609
+    spriteFrameIds:
+    - mascot.seraphin.frame0
+    - mascot.seraphin.frame1
+    - mascot.seraphin.frame2
+    - mascot.seraphin.frame3

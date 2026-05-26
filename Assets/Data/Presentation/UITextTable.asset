@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff97bb49140f7543b3d8b8422a606a7, type: 3}
+  m_Name: UITextTable
+  m_EditorClassIdentifier: Arkanoid.Definitions.SO::Arkanoid.Definitions.SO.UITextSO
+  entries:
+  - textId: txt_title_start
+    value: PRESS SPACE TO START
+  - textId: txt_title_highscore
+    value: HIGH SCORE {0}
+  - textId: txt_round_01
+    value: ROUND 1
+  - textId: txt_ready
+    value: READY
+  - textId: txt_gameover
+    value: GAME OVER
+  - textId: txt_retry
+    value: TAP TO RETRY
+  - textId: txt_item_expand_name
+    value: EXPAND
+  - textId: txt_item_expand_desc
+    value: BAR LENGTH x1.5
+  - textId: txt_intro_page_01
+    value: LONG AGO, THE BRICKS FELL FROM THE SKY.
+  - textId: txt_intro_page_02
+    value: ONLY THE BAR AND THE BALL REMAIN.
+  - textId: txt_intro_page_03
+    value: RECLAIM THE STAGES.
+  - textId: txt_round_02
+    value: ROUND 2
+  - textId: txt_round_03
+    value: ROUND 3
+  - textId: txt_gameclear
+    value: CONGRATULATIONS
+  - textId: txt_gameclear_final_score
+    value: FINAL SCORE {0}
+  - textId: txt_gameclear_retry
+    value: TAP TO RETRY
+  - textId: txt_gameover_final_score
+    value: FINAL SCORE {0}
+  - textId: txt_item_magnet_name
+    value: MAGNET
+  - textId: txt_item_magnet_desc
+    value: BALL STICKS TO BAR
+  - textId: txt_item_laser_name
+    value: LASER
+  - textId: txt_item_laser_desc
+    value: SPACE FIRES 2 SHOTS

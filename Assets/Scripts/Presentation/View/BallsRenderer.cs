@@ -26,13 +26,10 @@ namespace Arkanoid.Presentation.View
             {
                 var b = balls[i];
                 var go = _instances[i];
-                go.SetActive(b.IsActive);
-                if (b.IsActive)
-                {
-                    go.transform.position = new Vector3(b.X, b.Y, 0f);
-                    if (_sprites[i] != null)
-                        _sprites[i].color = (b.IsPowered ?? false) ? poweredColor : normalColor;
-                }
+                go.SetActive(true);
+                go.transform.localPosition = new Vector3(b.X, b.Y, 0f);
+                if (_sprites[i] != null)
+                    _sprites[i].color = (b.IsPowered ?? false) ? poweredColor : normalColor;
             }
 
             for (int i = balls.Count; i < _instances.Count; i++)

@@ -18,7 +18,7 @@ namespace Arkanoid.Presentation.View
             for (int i = 0; i < shots.Count; i++)
             {
                 _instances[i].SetActive(true);
-                _instances[i].transform.position = new Vector3(shots[i].X, shots[i].Y, 0f);
+                _instances[i].transform.localPosition = new Vector3(shots[i].X, shots[i].Y, 0f);
             }
             for (int i = shots.Count; i < _instances.Count; i++)
                 _instances[i].SetActive(false);

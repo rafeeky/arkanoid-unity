@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192a7caeee6f29241b9d82aa44b32e7e, type: 3}
+  m_Name: LayoutConfig
+  m_EditorClassIdentifier: Arkanoid.Definitions.SO::Arkanoid.Definitions.SO.LayoutConfigSO
+  canvasWidth: 1080
+  canvasHeight: 1920
+  playfieldWidth: 720
+  playfieldHeight: 900
+  playfieldOffsetX: 180
+  playfieldOffsetY: 600
+  hudLabelY: 100
+  hudValueY: 170
+  hudLeftX: 80
+  hudCenterX: 360
+  hudRightX: 660
+  hudLabelFontPx: 36
+  hudValueFontPx: 52
+  mascotCenterX: 900
+  mascotCenterY: 200
+  mascotSize: 200
+  livesBarStartX: 80
+  livesBarY: 1700
+  livesBarScale: 0.4
+  livesBarGap: 12
+  livesBarMaxDisplay: 7
+  sliderCenterY: 1800
+  sliderTrackHalfWidth: 400
+  sliderTrackHeight: 20
+  sliderKnobRadius: 40

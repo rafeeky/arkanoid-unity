@@ -17,7 +17,8 @@ namespace Arkanoid.Presentation.View
         {
             if (scoreText != null) scoreText.text = $"SCORE  {vm.Score}";
             if (highScoreText != null) highScoreText.text = $"HI  {vm.HighScore}";
-            if (livesText != null) livesText.text = $"LIVES  {vm.Lives}";
+            // ♥ (U+2665) 는 기본 폰트에 없는 케이스 많아 텍스트로 폴백.
+            if (livesText != null) livesText.text = $"LIVES x{vm.Lives}";
             if (roundText != null) roundText.text = $"ROUND  {vm.Round}";
             if (effectText != null)
             {

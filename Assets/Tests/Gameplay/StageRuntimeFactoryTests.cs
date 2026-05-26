@@ -20,7 +20,7 @@ namespace Arkanoid.Gameplay.Tests
 
         private static readonly IReadOnlyDictionary<string, BlockDefinition> BlockDefs = new Dictionary<string, BlockDefinition>
         {
-            ["basic"] = new("basic", 1, 10, null, "v"),
+            ["basic"] = new("basic", 1, 10, null, 0xCCCCCC),
         };
 
         // ─── MVP3 새 필드 초기값 ───

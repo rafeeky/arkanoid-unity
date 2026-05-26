@@ -6,7 +6,9 @@
         "Arkanoid.Definitions",
         "Arkanoid.Definitions.SO",
         "Arkanoid.Gameplay",
-        "Arkanoid.Flow"
+        "Arkanoid.Flow",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -26,15 +26,4 @@ namespace Arkanoid.Definitions
         // 라운드 시작 후 N ms 후 자동 발사. 데이터 제어용.
         float AutoLaunchDelayMs,
         PhysicsConfig Physics);
-
-    public static class DefaultConfig
-    {
-        // 기존 코드 const 값 그대로 옮긴 기본값. 디자이너 튜닝 시 SO 의 physics 필드 수정.
-        public static readonly PhysicsConfig Physics = new(
-            SubStepSize: 4f,
-            MaxSubSteps: 32,
-            PushOutEpsilon: 0.5f,
-            MinAngleDeg: 15f,
-            BarContactBias: 0.7f);
-    }
 }

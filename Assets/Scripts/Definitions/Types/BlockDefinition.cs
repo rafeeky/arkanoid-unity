@@ -6,5 +6,5 @@ namespace Arkanoid.Definitions
         int Score,
         // null = no drop. TS 의 'none' 대신 C# nullable 패턴.
         ItemType? DropItemType,
-        string VisualId);
+        int BaseColor);
 }

@@ -83,6 +83,10 @@ namespace Arkanoid.Presentation
 
         private bool _initialized;
 
+        // SaveData (PlayerPrefs 기반)
+        private ISaveRepository _saveRepo;
+        private SaveData _save;
+
         private void Awake()
         {
             Initialize();
@@ -137,6 +141,11 @@ namespace Arkanoid.Presentation
                 initialState = new GameplayRuntimeState();
             }
 
+            // SaveData 로드 → 초기 session.HighScore 에 반영.
+            _saveRepo = new PlayerPrefsSaveRepository();
+            _save = _saveRepo.Load();
+            initialState.Session = initialState.Session with { HighScore = _save.HighScore };
+
             var deps = new GameplayController.Dependencies(blockDefs, itemDefs, _config, spinnerDefs);
             _gameplayController = new GameplayController(initialState, deps);
             _gameFlowController = new GameFlowController(OnFlowEvent, stageDefinitionSOs.Count);
@@ -148,7 +157,7 @@ namespace Arkanoid.Presentation
             _screenDirector = new ScreenDirector(_config.RoundIntroDurationMs, _visualEffectController);
 
             _inputBuilder = new UnityInputSnapshotBuilder();
-            _pointerToPlayfield = mainCamera != null ? new PointerToPlayfield(mainCamera) : null;
+            _pointerToPlayfield = mainCamera != null ? new PointerToPlayfield(mainCamera, layoutConfigSO) : null;
         }
 
         private void Update()
@@ -173,6 +182,7 @@ namespace Arkanoid.Presentation
                 {
                     _visualEffectController.HandleGameplayEvent(e);
                     _gameFlowController.HandleGameplayEvent(e);
+                    RouteGameplayAudio(e);   // TS FlowEventRouter.routeGameplayAudio
                     foreach (var listener in _gameplayListeners) listener(e);
                 }
             }
@@ -182,6 +192,20 @@ namespace Arkanoid.Presentation
 
             // 5. View bind — Renderer/Panel 매 프레임 동기화.
             BindViews();
+
+            // 6. HighScore 갱신 시 PlayerPrefs save.
+            TrySaveHighScore();
+        }
+
+        private void TrySaveHighScore()
+        {
+            if (_saveRepo == null) return;
+            var session = _gameplayController.GetState().Session;
+            if (session.HighScore > _save.HighScore)
+            {
+                _save = _save with { HighScore = session.HighScore };
+                _saveRepo.Save(_save);
+            }
         }
 
         private void BindViews()
@@ -207,6 +231,14 @@ namespace Arkanoid.Presentation
                 if (itemsRenderer != null) itemsRenderer.Bind(gameplay.ItemDrops);
                 if (laserShotsRenderer != null) laserShotsRenderer.Bind(gameplay.LaserShots);
                 if (ballTrailRenderer != null) ballTrailRenderer.Bind(gameplay.Balls, gameplay.CurrentTrailStyle);
+                // Mascot 캐릭터 swap — PlayerPrefs 의 selectedMascot 또는 기본값 albatross.
+                // TS renderInGameScreen 의 cheerMascotFromState(selectedMascotId) 와 동등.
+                if (mascotRenderer != null)
+                {
+                    var mascotId = UnityEngine.PlayerPrefs.GetString("arkanoid.selectedMascot", "albatross");
+                    if (string.IsNullOrEmpty(mascotId)) mascotId = "albatross";
+                    mascotRenderer.SetMascot(mascotId);
+                }
             }
 
             // Panel binds.
@@ -214,7 +246,7 @@ namespace Arkanoid.Presentation
             {
                 case FlowStateKind.Title:
                     if (titlePanel != null)
-                        titlePanel.Bind(_screenPresenter.BuildTitleViewModel(gameplay.Session, uiTexts));
+                        titlePanel.Bind(_screenPresenter.BuildTitleViewModel(gameplay.Session, uiTexts, flowState.SelectedDifficulty));
                     break;
                 case FlowStateKind.IntroStory:
                     if (introStoryPanel != null && introSequenceSO != null)
@@ -226,6 +258,9 @@ namespace Arkanoid.Presentation
                     if (roundIntroPanel != null)
                         roundIntroPanel.Bind(_screenPresenter.BuildRoundIntroViewModel(
                             gameplay.Session, uiTexts, screenState.RoundIntroRemainingTime, _config.RoundIntroDurationMs));
+                    // TS 와 동일 — RoundIntro 동안 HUD 도 표시.
+                    if (inGamePanel != null)
+                        inGamePanel.Bind(_hudPresenter.BuildHudViewModel(gameplay));
                     break;
                 case FlowStateKind.InGame:
                     if (inGamePanel != null)
@@ -246,7 +281,67 @@ namespace Arkanoid.Presentation
 
         private void OnFlowEvent(FlowEvent e)
         {
+            RouteFlowAudio(e);                  // TS FlowEventRouter.routeFlowAudio
+            HandleEnteredResultGoldSave(e);     // TS FlowEventRouter.handleEnteredResult
             foreach (var l in _flowListeners) l(e);
+        }
+
+        // ─── Audio routing (TS FlowEventRouter 동치) ───
+
+        private static string EventTypeKey(object e)
+        {
+            var name = e.GetType().Name;
+            return name.EndsWith("Event") ? name.Substring(0, name.Length - 5) : name;
+        }
+
+        private void RouteGameplayAudio(GameplayEvent e)
+        {
+            if (_audioCueResolver == null || _audio == null) return;
+            var cues = _audioCueResolver.Resolve(EventTypeKey(e));
+            foreach (var cue in cues) _audio.Play(cue);
+        }
+
+        private void RouteFlowAudio(FlowEvent e)
+        {
+            if (_audioCueResolver == null || _audio == null) return;
+
+            // Phase 2: InGame 진입 시 RoundIntro 짧은 jingle 정지.
+            if (e is EnteredInGameEvent) _audio.Stop("cue_round_intro_jingle");
+
+            if (e is EnteredRoundIntroEvent && e.From == FlowStateKind.IntroStory)
+            {
+                foreach (var c in _audioCueResolver.Resolve("EnteredRoundIntro")) _audio.Play(c);
+                foreach (var c in _audioCueResolver.Resolve("UiConfirm")) _audio.Play(c);
+                return;
+            }
+            if (e is EnteredTitleEvent && e.From != FlowStateKind.Title)
+            {
+                foreach (var c in _audioCueResolver.Resolve("UiConfirm")) _audio.Play(c);
+                foreach (var c in _audioCueResolver.Resolve("EnteredTitle")) _audio.Play(c);
+                return;
+            }
+
+            foreach (var c in _audioCueResolver.Resolve(EventTypeKey(e))) _audio.Play(c);
+        }
+
+        // ─── Gold 적립 + HighScore save (TS FlowEventRouter.handleEnteredResult) ───
+
+        private void HandleEnteredResultGoldSave(FlowEvent e)
+        {
+            if (!(e is EnteredGameOverEvent || e is EnteredGameClearEvent)) return;
+            if (_saveRepo == null || _gameplayController == null) return;
+
+            var session = _gameplayController.GetState().Session;
+            var newHighScore = System.Math.Max(_save.HighScore, session.Score);
+            _save = _save with {
+                HighScore = newHighScore,
+                Gold = _save.Gold + session.Score,   // TS addGoldFromScore: 1:1 변환
+            };
+            _saveRepo.Save(_save);
+
+            // PlayerPrefs key 도 동기화 (TitlePanel 이 직접 PlayerPrefs 읽으므로)
+            UnityEngine.PlayerPrefs.SetInt("arkanoid.gold", _save.Gold);
+            UnityEngine.PlayerPrefs.Save();
         }
 
         private void OnPresentationEvent(PresentationEvent e)
@@ -269,5 +364,9 @@ namespace Arkanoid.Presentation
         public HUDPresenter HudPresenter => _hudPresenter;
         public ScreenPresenter ScreenPresenter => _screenPresenter;
         public IArkanoidAudio Audio => _audio;
+
+        // Title NORMAL/HARD 버튼 onClick → 난이도 + 게임 시작.
+        public void RequestStartGame(DifficultyKind difficulty) =>
+            _gameFlowController?.RequestStartGame(difficulty);
     }
 }

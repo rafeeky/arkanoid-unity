@@ -10,13 +10,13 @@ namespace Arkanoid.Definitions.SO
         [SerializeField] private int maxHits = 1;
         [SerializeField] private int score = 10;
         [SerializeField] private DropItemKind dropItem = DropItemKind.None;
-        [SerializeField] private string visualId = "block_basic";
+        [SerializeField] private int baseColor = 0xCCCCCC;
 
         public BlockDefinition Data => new(
             DefinitionId: definitionId,
             MaxHits: maxHits,
             Score: score,
             DropItemType: dropItem.ToItemTypeOrNull(),
-            VisualId: visualId);
+            BaseColor: baseColor);
     }
 }

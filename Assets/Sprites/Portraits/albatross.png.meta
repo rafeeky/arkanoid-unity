@@ -1,0 +1,1040 @@
+fileFormatVersion: 2
+guid: c3aabd391169bd84996f8041f0852f2f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1621779863903150100
+    second: albatross_0
+  - first:
+      213: 4981603241602092143
+    second: albatross_1
+  - first:
+      213: -7841973965117611893
+    second: albatross_2
+  - first:
+      213: -3292897569639340917
+    second: albatross_3
+  - first:
+      213: 2509522151054310976
+    second: albatross_4
+  - first:
+      213: -6298529478809649590
+    second: albatross_5
+  - first:
+      213: 4403167168702053260
+    second: albatross_6
+  - first:
+      213: 8300156768315895237
+    second: albatross_7
+  - first:
+      213: 2011199138429341700
+    second: albatross_8
+  - first:
+      213: -8697937657273357132
+    second: albatross_9
+  - first:
+      213: 3001731899149181602
+    second: albatross_10
+  - first:
+      213: 1618875387883827492
+    second: albatross_11
+  - first:
+      213: 7381781121495728774
+    second: albatross_12
+  - first:
+      213: 947165163274209129
+    second: albatross_13
+  - first:
+      213: -8450610670037759633
+    second: albatross_14
+  - first:
+      213: 7352585404500134821
+    second: albatross_15
+  - first:
+      213: -800546541782271534
+    second: albatross_16
+  - first:
+      213: -5541832169893995717
+    second: albatross_17
+  - first:
+      213: 7017582885803669126
+    second: albatross_18
+  - first:
+      213: 4964028719879769627
+    second: albatross_19
+  - first:
+      213: -7995510083808800711
+    second: albatross_20
+  - first:
+      213: 2305046461610046804
+    second: albatross_21
+  - first:
+      213: 5185863108967457143
+    second: albatross_22
+  - first:
+      213: -6667964367290812462
+    second: albatross_23
+  - first:
+      213: -6219611699862100401
+    second: albatross_24
+  - first:
+      213: -3896766732830005956
+    second: albatross_25
+  - first:
+      213: 3504024240428684707
+    second: albatross_26
+  - first:
+      213: 8684937000887549874
+    second: albatross_27
+  - first:
+      213: -7521817418823785026
+    second: albatross_28
+  - first:
+      213: 5065306949326141890
+    second: albatross_29
+  - first:
+      213: 2569646441746558600
+    second: albatross_30
+  - first:
+      213: 2758123128527222112
+    second: albatross_31
+  - first:
+      213: -1148817221534260718
+    second: albatross_32
+  - first:
+      213: 6682343835073538270
+    second: albatross_33
+  - first:
+      213: 8547867626222899035
+    second: albatross_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: albatross_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 202
+        width: 812
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41024d39138b18610800000000000000
+      internalID: 1621779863903150100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 678
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6c80ab21c5322540800000000000000
+      internalID: 4981603241602092143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 674
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80ad4f2a36bb2390800000000000000
+      internalID: -7841973965117611893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_3
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 678
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8466ef5b174d42d0800000000000000
+      internalID: -3292897569639340917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_4
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 644
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ef091b91d93d220800000000000000
+      internalID: 2509522151054310976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_5
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 562
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e79306fc02798a0800000000000000
+      internalID: -6298529478809649590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_6
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 449
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bf52106313b1d30800000000000000
+      internalID: 4403167168702053260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_7
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 394
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cde58bca94103370800000000000000
+      internalID: 8300156768315895237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_8
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 325
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40017aae5f639eb10800000000000000
+      internalID: 2011199138429341700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 237
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bc6abbc8c7ba4780800000000000000
+      internalID: -8697937657273357132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_10
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 237
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2eeb7224b48a920800000000000000
+      internalID: 3001731899149181602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_11
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 244
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421307e8696677610800000000000000
+      internalID: 1618875387883827492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_12
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 236
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6820074d1da517660800000000000000
+      internalID: 7381781121495728774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 233
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 967859c92b1052d00800000000000000
+      internalID: 947165163274209129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_14
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 233
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f69064d6e5669ba80800000000000000
+      internalID: -8450610670037759633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_15
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 237
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5abc3ff3871a90660800000000000000
+      internalID: 7352585404500134821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_16
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 238
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d976e66923e3e4f0800000000000000
+      internalID: -800546541782271534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_17
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 225
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3bd2acd0057713b0800000000000000
+      internalID: -5541832169893995717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_18
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 225
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68630323476736160800000000000000
+      internalID: 7017582885803669126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_19
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 225
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1e4547f1d5c3e440800000000000000
+      internalID: 4964028719879769627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_20
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 214
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 930d588d0fd3a0190800000000000000
+      internalID: -7995510083808800711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_21
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 215
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455b90f4b8b2dff10800000000000000
+      internalID: 2305046461610046804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_22
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 214
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771eecf8503e7f740800000000000000
+      internalID: 5185863108967457143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_23
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 202
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d73ba08cb1a673a0800000000000000
+      internalID: -6667964367290812462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_24
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 205
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f462bd4ac108fa9a0800000000000000
+      internalID: -6219611699862100401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_25
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 202
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c35ab1d6d47ebe9c0800000000000000
+      internalID: -3896766732830005956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_26
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 202
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a51c174b7bc0a030800000000000000
+      internalID: 3504024240428684707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_27
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 202
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf7c820038178870800000000000000
+      internalID: 8684937000887549874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_28
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 205
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb5a9ade8e22d9790800000000000000
+      internalID: -7521817418823785026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_29
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 202
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9f6e055d59b4640800000000000000
+      internalID: 5065306949326141890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_30
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 204
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e66aef2d739a320800000000000000
+      internalID: 2569646441746558600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_31
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 202
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06577aa4f52d64620800000000000000
+      internalID: 2758123128527222112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_32
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 202
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212699ed2d49e00f0800000000000000
+      internalID: -1148817221534260718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_33
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 202
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed8649c30547cbc50800000000000000
+      internalID: 6682343835073538270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: albatross_34
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 202
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5fc318415020a670800000000000000
+      internalID: 8547867626222899035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      albatross_0: 1621779863903150100
+      albatross_1: 4981603241602092143
+      albatross_10: 3001731899149181602
+      albatross_11: 1618875387883827492
+      albatross_12: 7381781121495728774
+      albatross_13: 947165163274209129
+      albatross_14: -8450610670037759633
+      albatross_15: 7352585404500134821
+      albatross_16: -800546541782271534
+      albatross_17: -5541832169893995717
+      albatross_18: 7017582885803669126
+      albatross_19: 4964028719879769627
+      albatross_2: -7841973965117611893
+      albatross_20: -7995510083808800711
+      albatross_21: 2305046461610046804
+      albatross_22: 5185863108967457143
+      albatross_23: -6667964367290812462
+      albatross_24: -6219611699862100401
+      albatross_25: -3896766732830005956
+      albatross_26: 3504024240428684707
+      albatross_27: 8684937000887549874
+      albatross_28: -7521817418823785026
+      albatross_29: 5065306949326141890
+      albatross_3: -3292897569639340917
+      albatross_30: 2569646441746558600
+      albatross_31: 2758123128527222112
+      albatross_32: -1148817221534260718
+      albatross_33: 6682343835073538270
+      albatross_34: 8547867626222899035
+      albatross_4: 2509522151054310976
+      albatross_5: -6298529478809649590
+      albatross_6: 4403167168702053260
+      albatross_7: 8300156768315895237
+      albatross_8: 2011199138429341700
+      albatross_9: -8697937657273357132
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

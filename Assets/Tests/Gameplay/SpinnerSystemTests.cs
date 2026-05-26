@@ -30,7 +30,7 @@ namespace Arkanoid.Gameplay.Tests
             ["spinner_triangle"] = TriangleDef,
         };
 
-        private static readonly BlockDefinition BlockDef = new("block_normal", 1, 100, null, "block_normal_visual");
+        private static readonly BlockDefinition BlockDef = new("block_normal", 1, 100, null, 0xCCCCCC);
         private static readonly IReadOnlyDictionary<string, BlockDefinition> BlockDefs = new Dictionary<string, BlockDefinition>
         {
             ["block_normal"] = BlockDef,

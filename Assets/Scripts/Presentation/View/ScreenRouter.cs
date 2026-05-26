@@ -20,7 +20,8 @@ namespace Arkanoid.Presentation.View
             SafeSetActive(titlePanel, kind == FlowStateKind.Title);
             SafeSetActive(introStoryPanel, kind == FlowStateKind.IntroStory);
             SafeSetActive(roundIntroPanel, kind == FlowStateKind.RoundIntro);
-            SafeSetActive(inGamePanel, kind == FlowStateKind.InGame);
+            // TS SceneRenderer.render 와 동일 — RoundIntro 동안에도 InGame 뷰 (HUD/Bar/Ball/Blocks) 표시.
+            SafeSetActive(inGamePanel, kind == FlowStateKind.InGame || kind == FlowStateKind.RoundIntro);
             SafeSetActive(gameOverPanel, kind == FlowStateKind.GameOver);
             SafeSetActive(gameClearPanel, kind == FlowStateKind.GameClear);
             // PauseOverlay 는 Pause flow 상태가 별도 enum 으로 생긴 뒤 활성화.

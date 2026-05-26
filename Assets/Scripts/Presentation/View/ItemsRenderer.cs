@@ -28,7 +28,7 @@ namespace Arkanoid.Presentation.View
                 _instances[i].SetActive(visible);
                 if (!visible) continue;
 
-                _instances[i].transform.position = new Vector3(it.X, it.Y, 0f);
+                _instances[i].transform.localPosition = new Vector3(it.X, it.Y, 0f);
                 if (_sprites[i] != null)
                 {
                     _sprites[i].sprite = it.ItemType switch

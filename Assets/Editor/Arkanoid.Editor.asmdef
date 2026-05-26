@@ -1,0 +1,21 @@
+{
+    "name": "Arkanoid.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Arkanoid.Definitions",
+        "Arkanoid.Definitions.SO",
+        "Arkanoid.Presentation",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

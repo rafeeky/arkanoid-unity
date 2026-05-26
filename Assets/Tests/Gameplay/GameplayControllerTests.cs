@@ -14,9 +14,9 @@ namespace Arkanoid.Gameplay.Tests
 
         private static readonly IReadOnlyDictionary<string, BlockDefinition> BlockDefs = new Dictionary<string, BlockDefinition>
         {
-            ["basic"] = new("basic", 1, 10, null, "v"),
-            ["basic_drop"] = new("basic_drop", 1, 10, ItemType.Expand, "v"),
-            ["tough"] = new("tough", 2, 30, null, "v"),
+            ["basic"] = new("basic", 1, 10, null, 0xCCCCCC),
+            ["basic_drop"] = new("basic_drop", 1, 10, ItemType.Expand, 0xCCCCCC),
+            ["tough"] = new("tough", 2, 30, null, 0xCCCCCC),
         };
 
         private static readonly IReadOnlyDictionary<ItemType, ItemDefinition> ItemDefs = new Dictionary<ItemType, ItemDefinition>

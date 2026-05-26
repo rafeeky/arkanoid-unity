@@ -31,7 +31,7 @@ namespace Arkanoid.Presentation.View
                 go.SetActive(b.IsActive);
                 if (!b.IsActive) continue;
 
-                go.transform.position = new Vector3(b.X, b.Y, 0f);
+                go.transform.localPosition = new Vector3(b.X, b.Y, 0f);
                 if (_trails[i] != null)
                 {
                     _trails[i].emitting = powered;

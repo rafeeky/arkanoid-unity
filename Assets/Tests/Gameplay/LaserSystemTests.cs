@@ -17,8 +17,8 @@ namespace Arkanoid.Gameplay.Tests
 
         private static readonly IReadOnlyDictionary<string, BlockDefinition> BlockDefs = new Dictionary<string, BlockDefinition>
         {
-            ["basic"] = new("basic", 1, 10, null, "v"),
-            ["tough"] = new("tough", 2, 30, null, "v"),
+            ["basic"] = new("basic", 1, 10, null, 0xCCCCCC),
+            ["tough"] = new("tough", 2, 30, null, 0xCCCCCC),
         };
 
         private static (LaserSystem System, int[] Counter) MakeSystem()

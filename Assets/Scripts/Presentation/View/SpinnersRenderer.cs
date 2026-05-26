@@ -24,8 +24,8 @@ namespace Arkanoid.Presentation.View
                 var s = spinners[i];
                 var go = _instances[i];
                 go.SetActive(true);
-                go.transform.position = new Vector3(s.X, s.Y, 0f);
-                go.transform.rotation = Quaternion.Euler(0f, 0f, s.AngleRad * Mathf.Rad2Deg);
+                go.transform.localPosition = new Vector3(s.X, s.Y, 0f);
+                go.transform.localRotation = Quaternion.Euler(0f, 0f, s.AngleRad * Mathf.Rad2Deg);
 
                 if (_sprites[i] != null)
                 {
