@@ -15,12 +15,19 @@ namespace Arkanoid.Presentation.View
     // - NORMAL/HARD 버튼 onClick → GameManager.RequestStartGame.
     public sealed class TitlePanel : MonoBehaviour
     {
-        [SerializeField] private TMP_Text startText;
-        [SerializeField] private TMP_Text highScoreText;
-        [SerializeField] private TMP_Text difficultyText;
+        [Header("Title 로고 / 텍스트")]
+        [SerializeField] private TMP_Text titleText;          // "ALBATROSS" 큰 로고 (y=260)
+        [SerializeField] private TMP_Text startText;           // (TS 미사용 — 보존)
+        [SerializeField] private TMP_Text highScoreText;       // y=1137
+        [SerializeField] private TMP_Text difficultyText;      // (TS 미사용 — 보존)
 
         [Header("Mascot Portrait (4 frame anim) — 작은 한 마리 미리보기")]
         [SerializeField] private Image mascotImage;
+        [SerializeField] private Image mascotPortraitFrame;     // 흰 4px stroke 정사각형
+        [SerializeField] private GameObject prevArrow;          // "<" 좌측 (cursor 첫 위치면 dim)
+        [SerializeField] private GameObject nextArrow;          // ">" 우측 (cursor 마지막이면 dim)
+        [SerializeField] private TMP_Text prevArrowText;        // dim 색 처리용
+        [SerializeField] private TMP_Text nextArrowText;
         [SerializeField] private Sprite[] mascotFrames = new Sprite[4];
         [SerializeField] private float frameIntervalSec = 0.2f;
 
@@ -35,6 +42,23 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Button normalButton;
         [SerializeField] private Button hardButton;
         [SerializeField] private GameManager gameManager;
+
+        [Header("POWERUPS 영역 (TS renderTitleScreen.ts POWERUPS — 3 아이템)")]
+        [SerializeField] private TMP_Text powerupsTitle;        // "POWERUPS" y=1250
+        [SerializeField] private PowerupSlot[] powerupSlots;    // 3개: EXPAND/MAGNET/LASER
+
+        [Header("Info Panels (반투명 배경 카드)")]
+        [SerializeField] private Image mascotInfoPanel;         // cy=985 w=620 h=160
+        [SerializeField] private Image powerupsInfoPanel;       // cy=1340 w=1010 h=260
+
+        [System.Serializable]
+        public struct PowerupSlot
+        {
+            public Image IconBlock;        // 블록 모양 배경 (block_*_drop)
+            public Image IconOverlay;      // 흰 아이콘 (icon_expand 등)
+            public TMP_Text Name;          // EXPAND/MAGNET/LASER
+            public TMP_Text Description;   // 설명문
+        }
 
         [System.Serializable]
         public struct MascotPortrait
@@ -73,11 +97,39 @@ namespace Arkanoid.Presentation.View
                 hardButton.onClick.RemoveListener(OnHardClicked);
                 hardButton.onClick.AddListener(OnHardClicked);
             }
+            WireArrow(prevArrow, OnPrevArrowClicked);
+            WireArrow(nextArrow, OnNextArrowClicked);
+        }
+
+        private static void WireArrow(GameObject arrowGo, UnityEngine.Events.UnityAction onClick)
+        {
+            if (arrowGo == null) return;
+            var btn = arrowGo.GetComponent<Button>();
+            if (btn == null) btn = arrowGo.AddComponent<Button>();
+            btn.onClick.RemoveListener(onClick);
+            btn.onClick.AddListener(onClick);
+        }
+
+        private void OnPrevArrowClicked()
+        {
+            if (portraits == null || portraits.Length == 0) return;
+            _selectedIdx = (_selectedIdx - 1 + portraits.Length) % portraits.Length;
+            OnSelectionChanged();
+        }
+
+        private void OnNextArrowClicked()
+        {
+            if (portraits == null || portraits.Length == 0) return;
+            _selectedIdx = (_selectedIdx + 1) % portraits.Length;
+            OnSelectionChanged();
         }
 
         public void Bind(TitleScreenViewModel vm)
         {
+            // TS renderTitleScreen.ts: startText 는 사용 안 함 (NORMAL/HARD 버튼이 시작).
+            // 기존 호환 위해 텍스트는 채워두지만 GameObject 가시성은 변경 안 함.
             if (startText != null) startText.text = vm.StartText;
+            if (titleText != null && string.IsNullOrEmpty(titleText.text)) titleText.text = "ALBATROSS";
             if (highScoreText != null) highScoreText.text = $"HIGH SCORE  {vm.HighScore}";
             if (difficultyText != null)
                 difficultyText.text = vm.SelectedDifficulty == DifficultyKind.Hard ? "[HARD]" : "[NORMAL]";
@@ -225,6 +277,20 @@ namespace Arkanoid.Presentation.View
             }
             if (goldText != null)
                 goldText.text = $"GOLD: {PlayerPrefs.GetInt(KeyGold, 0)}";
+
+            // TS renderTitleScreen — cursor 가 끝(첫/마지막) 에 있으면 그 방향 화살표만 dimmed.
+            // 첫 albatross(0): ←dim →white | 마지막 seraphin: ←white →dim
+            UpdateArrowColors();
+        }
+
+        private void UpdateArrowColors()
+        {
+            if (portraits == null || portraits.Length == 0) return;
+            bool isFirst = _selectedIdx == 0;
+            bool isLast = _selectedIdx == portraits.Length - 1;
+            var dim = new Color(0.53f, 0.53f, 0.53f, 1f);  // #888888
+            if (prevArrowText != null) prevArrowText.color = isFirst ? dim : Color.white;
+            if (nextArrowText != null) nextArrowText.color = isLast ? dim : Color.white;
         }
 
         private void OnNormalClicked()

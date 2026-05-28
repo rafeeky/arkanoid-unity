@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Arkanoid.Definitions;
 using Arkanoid.Definitions.SO;
 using Arkanoid.Flow;
@@ -61,6 +62,10 @@ namespace Arkanoid.Presentation
 
         [Header("Audio — UnityAudio 컴포넌트 있으면 NoopAudio 대신 사용")]
         [SerializeField] private UnityAudio unityAudio;
+
+        [Header("Stage 배경 — stage index 별 sprite (bg_pixel_01~03). InGame/RoundIntro 배경 Image 에 적용")]
+        [SerializeField] private Sprite[] stageBackgroundSprites;
+        [SerializeField] private Image[] stageBackgroundImages;
 
         // ─── Runtime services ───
 
@@ -197,6 +202,18 @@ namespace Arkanoid.Presentation
             TrySaveHighScore();
         }
 
+        // stage index 별 배경 sprite 적용 (bg_pixel_01~03). InGame/RoundIntro 배경 Image 공유.
+        private void ApplyStageBackground(int stageIndex)
+        {
+            if (stageBackgroundSprites == null || stageBackgroundSprites.Length == 0) return;
+            if (stageBackgroundImages == null) return;
+            var idx = Mathf.Clamp(stageIndex, 0, stageBackgroundSprites.Length - 1);
+            var sprite = stageBackgroundSprites[idx];
+            if (sprite == null) return;
+            foreach (var img in stageBackgroundImages)
+                if (img != null && img.sprite != sprite) img.sprite = sprite;
+        }
+
         private void TrySaveHighScore()
         {
             if (_saveRepo == null) return;
@@ -222,6 +239,7 @@ namespace Arkanoid.Presentation
                             || flowState.Kind == FlowStateKind.RoundIntro;
             if (showGameplay)
             {
+                ApplyStageBackground(gameplay.Session.CurrentStageIndex);
                 if (barRenderer != null) barRenderer.Bind(gameplay.Bar);
                 if (ballsRenderer != null) ballsRenderer.Bind(gameplay.Balls);
                 if (blocksRenderer != null) blocksRenderer.Bind(gameplay.Blocks, screenState.BlockHitFlashBlockIds);

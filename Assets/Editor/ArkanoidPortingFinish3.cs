@@ -612,15 +612,15 @@ namespace ArkanoidEditor
             if (title != null)
                 EnsureBackgroundChild(title.transform, "Background", "Assets/Sprites/Backgrounds/bg_title.png");
 
-            // InGamePanel — bg_stage_01 기본.
+            // InGamePanel — bg_pixel_01 기본 (stage index 별 swap 은 GameManager.ApplyStageBackground).
             var inGame = FindFirstOfType<InGamePanel>();
             if (inGame != null)
-                EnsureBackgroundChild(inGame.transform, "Background", "Assets/Sprites/Backgrounds/bg_stage_01.png");
+                EnsureBackgroundChild(inGame.transform, "Background", "Assets/Sprites/Backgrounds/bg_pixel_01.png");
 
             // RoundIntroPanel — 동일 stage BG.
             var ri = FindFirstOfType<RoundIntroPanel>();
             if (ri != null)
-                EnsureBackgroundChild(ri.transform, "Background", "Assets/Sprites/Backgrounds/bg_stage_01.png");
+                EnsureBackgroundChild(ri.transform, "Background", "Assets/Sprites/Backgrounds/bg_pixel_01.png");
 
             // IntroStory — bg_pixel_01 (스토리 분위기).
             var intro = FindFirstOfType<IntroStoryPanel>();

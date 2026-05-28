@@ -6,6 +6,11 @@
 - 페이스: *혼합 모드* (핵심 구조 함께 설계, 세부 구현 Claude)
 - 시간 제약: 없음, **완성도 우선**
 
+> **상태 (2026-05-29):** Phase 1~5 코드 완료 + 에디터 자산/씬 와이어링 대부분 완료. 최신 진행 상태와 알려진 이슈/수정은 `HANDOFF.md` 와 `03_troubleshooting_log.md`(§7~9) 참조. 아래 초기 결정 중 일부는 실제 구현과 다름:
+> - **D3.4**: 문서엔 `orthographicSize = 960` 이나 실제 씬 카메라는 **640** (playfield 720×900 프레이밍). canvas 1080×1920 는 CanvasScaler 기준.
+> - 라운드 배경: `bg_stage_*` → `bg_pixel_01~03` (stage index 별 전환) 으로 교체됨.
+> - 게임 폰트: `Assets/Fonts/DNFBitBitv2 Dynamic SDF`.
+
 ---
 
 ## 0. 확정 결정 (11개)
