@@ -620,6 +620,29 @@ namespace ArkanoidPortFix
             Debug.Log($"[ArkanoidFix] Stage backgrounds wired: {bgImages.Count} bg images + GameManager sprite[3]");
         }
 
+        // P3 에서 잘못 중복 생성한 Title UI GameObject 제거 (기존 LogoText/Powerup0~2/PowerupsPanel 사용).
+        [MenuItem("ArkanoidFix/C. Remove duplicate Title UI (TitleText/PowerupSlot_*/PowerupsInfoPanel)")]
+        public static void RemoveDuplicateTitleUi()
+        {
+            var titlePanel = GameObject.Find("Canvas/TitlePanel");
+            if (titlePanel == null) { Debug.LogError("[ArkanoidFix] TitlePanel not found"); return; }
+            string[] dupNames = {
+                "TitleText",
+                "PowerupsInfoPanel",
+                "PowerupSlot_EXPAND_Block", "PowerupSlot_EXPAND_Overlay", "PowerupSlot_EXPAND_Name", "PowerupSlot_EXPAND_Desc",
+                "PowerupSlot_MAGNET_Block", "PowerupSlot_MAGNET_Overlay", "PowerupSlot_MAGNET_Name", "PowerupSlot_MAGNET_Desc",
+                "PowerupSlot_LASER_Block", "PowerupSlot_LASER_Overlay", "PowerupSlot_LASER_Name", "PowerupSlot_LASER_Desc",
+            };
+            int removed = 0;
+            foreach (var n in dupNames)
+            {
+                var child = titlePanel.transform.Find(n);
+                if (child != null) { Debug.Log($"[ArkanoidFix] Removing duplicate: {n}"); Object.DestroyImmediate(child.gameObject); removed++; }
+            }
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            Debug.Log($"[ArkanoidFix] Removed {removed} duplicate Title UI GameObjects");
+        }
+
         [MenuItem("ArkanoidFix/9. Save active scene")]
         public static void SaveScene()
         {

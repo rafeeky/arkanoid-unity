@@ -15,8 +15,8 @@ namespace Arkanoid.Presentation.View
     // - NORMAL/HARD 버튼 onClick → GameManager.RequestStartGame.
     public sealed class TitlePanel : MonoBehaviour
     {
-        [Header("Title 로고 / 텍스트")]
-        [SerializeField] private TMP_Text titleText;          // "ALBATROSS" 큰 로고 (y=260)
+        [Header("Title 텍스트")]
+        // 로고("ALBATROSS")는 기존 씬의 LogoText GameObject 가 정적으로 표시 (코드 연결 불필요).
         [SerializeField] private TMP_Text startText;           // (TS 미사용 — 보존)
         [SerializeField] private TMP_Text highScoreText;       // y=1137
         [SerializeField] private TMP_Text difficultyText;      // (TS 미사용 — 보존)
@@ -43,22 +43,8 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Button hardButton;
         [SerializeField] private GameManager gameManager;
 
-        [Header("POWERUPS 영역 (TS renderTitleScreen.ts POWERUPS — 3 아이템)")]
-        [SerializeField] private TMP_Text powerupsTitle;        // "POWERUPS" y=1250
-        [SerializeField] private PowerupSlot[] powerupSlots;    // 3개: EXPAND/MAGNET/LASER
-
-        [Header("Info Panels (반투명 배경 카드)")]
-        [SerializeField] private Image mascotInfoPanel;         // cy=985 w=620 h=160
-        [SerializeField] private Image powerupsInfoPanel;       // cy=1340 w=1010 h=260
-
-        [System.Serializable]
-        public struct PowerupSlot
-        {
-            public Image IconBlock;        // 블록 모양 배경 (block_*_drop)
-            public Image IconOverlay;      // 흰 아이콘 (icon_expand 등)
-            public TMP_Text Name;          // EXPAND/MAGNET/LASER
-            public TMP_Text Description;   // 설명문
-        }
+        // POWERUPS 영역(PowerupsTitle / Powerup0~2_Icon/Name/Desc) + 정보 배경(MascotInfoPanel/PowerupsPanel)
+        // 은 기존 씬 GameObject 가 정적으로 표시 (코드 연결 불필요).
 
         [System.Serializable]
         public struct MascotPortrait
@@ -129,7 +115,6 @@ namespace Arkanoid.Presentation.View
             // TS renderTitleScreen.ts: startText 는 사용 안 함 (NORMAL/HARD 버튼이 시작).
             // 기존 호환 위해 텍스트는 채워두지만 GameObject 가시성은 변경 안 함.
             if (startText != null) startText.text = vm.StartText;
-            if (titleText != null && string.IsNullOrEmpty(titleText.text)) titleText.text = "ALBATROSS";
             if (highScoreText != null) highScoreText.text = $"HIGH SCORE  {vm.HighScore}";
             if (difficultyText != null)
                 difficultyText.text = vm.SelectedDifficulty == DifficultyKind.Hard ? "[HARD]" : "[NORMAL]";
