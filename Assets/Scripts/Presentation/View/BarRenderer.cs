@@ -23,8 +23,12 @@ namespace Arkanoid.Presentation.View
         private static Sprite _circleSprite;
         private const int UNIT_PX = 64;
 
-        private void Awake()
+        private void Awake() => EnsureInitialized();
+
+        // 컴포넌트 enabled=false 또는 Awake 누락 시에도 Bind 직전 호출돼 sprite/자식 보장.
+        private void EnsureInitialized()
         {
+            if (_semL != null && _semL.sprite != null) return;
             EnsureSprites();
 
             // 옛 자식 (V2 sprite 시절 body 등) 비활성 — 새 5-도형 위에 겹치지 않게
@@ -41,6 +45,13 @@ namespace Arkanoid.Presentation.View
             _baseRect = FindOrMake("Base",    _squareSprite, 1);
             _stripL   = FindOrMake("StripL",  _squareSprite, 2);
             _stripR   = FindOrMake("StripR",  _squareSprite, 2);
+
+            // sprite 가 null 인 경우 강제 재설정 (FindOrMake 가 existing 일 때 _circleSprite/null 가능성)
+            if (_semL.sprite == null) _semL.sprite = _circleSprite;
+            if (_semR.sprite == null) _semR.sprite = _circleSprite;
+            if (_baseRect.sprite == null) _baseRect.sprite = _squareSprite;
+            if (_stripL.sprite == null) _stripL.sprite = _squareSprite;
+            if (_stripR.sprite == null) _stripR.sprite = _squareSprite;
 
             _stripL.color = Color.white;
             _stripR.color = Color.white;
@@ -63,6 +74,7 @@ namespace Arkanoid.Presentation.View
 
         public void Bind(BarState bar)
         {
+            EnsureInitialized();
             transform.localPosition = new Vector3(bar.X, bar.Y, 0f);
 
             float w = bar.Width;
@@ -118,6 +130,8 @@ namespace Arkanoid.Presentation.View
             if (_circleSprite == null) _circleSprite = MakeCircleSprite();
         }
 
+        // D3.4 "1 unit = 1 px" 규약 — Sprite PPU=1 로 만들어 64px sprite 가 world 64 unit 이 되도록.
+        // 옛 PPU=UNIT_PX(=64) 는 sprite world 1 unit → scale 0.375 적용 시 sub-pixel 로 안 보임.
         private static Sprite MakeSquareSprite()
         {
             var tex = new Texture2D(UNIT_PX, UNIT_PX, TextureFormat.RGBA32, false);
@@ -125,7 +139,7 @@ namespace Arkanoid.Presentation.View
             for (int i = 0; i < pixels.Length; i++) pixels[i] = new Color32(255, 255, 255, 255);
             tex.SetPixels32(pixels);
             tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, UNIT_PX, UNIT_PX), new Vector2(0.5f, 0.5f), UNIT_PX);
+            return Sprite.Create(tex, new Rect(0, 0, UNIT_PX, UNIT_PX), new Vector2(0.5f, 0.5f), 1f);
         }
 
         private static Sprite MakeCircleSprite()
@@ -145,7 +159,7 @@ namespace Arkanoid.Presentation.View
             }
             tex.SetPixels32(pixels);
             tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, UNIT_PX, UNIT_PX), new Vector2(0.5f, 0.5f), UNIT_PX);
+            return Sprite.Create(tex, new Rect(0, 0, UNIT_PX, UNIT_PX), new Vector2(0.5f, 0.5f), 1f);
         }
     }
 }

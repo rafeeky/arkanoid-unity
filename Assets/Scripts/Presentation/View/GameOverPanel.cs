@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Arkanoid.Flow;
 
 namespace Arkanoid.Presentation.View
 {
-    // GameOver — label/score 표시 + 4 frame mascot 애니 (200ms 주기).
+    // GameOver — label/score + 마스코트 3개 (각 4-frame anim) + Retry/Title 두 버튼.
     public sealed class GameOverPanel : MonoBehaviour
     {
         [SerializeField] private TMP_Text gameOverLabel;
@@ -14,13 +15,32 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Color normalColor = Color.white;
         [SerializeField] private Color newHiColor = new(1f, 0.9f, 0.2f, 1f);
 
-        [Header("Mascot (gameover_frame_1~4)")]
-        [SerializeField] private Image mascotImage;
+        [Header("Mascot — 나란히 3개, 각 4 frame anim (gameover_frame_1~4)")]
+        [SerializeField] private Image[] mascotImages = new Image[3];
         [SerializeField] private Sprite[] mascotFrames = new Sprite[4];
         [SerializeField] private float frameIntervalSec = 0.2f;
+        // 호환 — 옛 단일 mascot 참조 보존 (씬 wire 호환).
+        [SerializeField] private Image mascotImage;
+
+        [Header("Retry/Title 두 버튼 — onClick GameFlowController")]
+        [SerializeField] private Button retryButton;
+        [SerializeField] private Button titleButton;
+        [SerializeField] private GameManager gameManager;
 
         private float _accumTime;
         private int _frameIdx;
+
+        private void OnEnable()
+        {
+            WireBtn(retryButton, () => gameManager?.RequestRetry());
+            WireBtn(titleButton, () => gameManager?.RequestQuitToTitle());
+        }
+        private static void WireBtn(Button b, UnityEngine.Events.UnityAction onClick)
+        {
+            if (b == null) return;
+            b.onClick.RemoveListener(onClick);
+            b.onClick.AddListener(onClick);
+        }
 
         public void Bind(GameOverViewModel vm)
         {
@@ -36,18 +56,21 @@ namespace Arkanoid.Presentation.View
 
         private void Update()
         {
-            if (mascotImage == null || mascotFrames == null || mascotFrames.Length == 0) return;
+            if (mascotFrames == null || mascotFrames.Length == 0) return;
             _accumTime += Time.deltaTime;
             if (_accumTime >= frameIntervalSec)
             {
                 _accumTime = 0f;
                 _frameIdx = (_frameIdx + 1) % mascotFrames.Length;
                 var f = mascotFrames[_frameIdx];
-                if (f != null)
+                if (f == null) return;
+                // 3개 (또는 옛 단일 mascotImage) 모두 같은 프레임 sprite 동기 표시
+                if (mascotImages != null)
                 {
-                    mascotImage.sprite = f;
-                    mascotImage.enabled = true;
+                    foreach (var img in mascotImages)
+                        if (img != null) { img.sprite = f; img.enabled = true; }
                 }
+                if (mascotImage != null) { mascotImage.sprite = f; mascotImage.enabled = true; }
             }
         }
     }

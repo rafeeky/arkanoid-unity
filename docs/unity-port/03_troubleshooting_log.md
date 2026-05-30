@@ -278,6 +278,97 @@ DYNAMIC TMP (DNF) charCount=7 vertexCount=32  ← 동적 생성 텍스트는 정
 
 ---
 
+---
+
+## 10. TS Phaser → Unity 매핑 함정 모음 (2026-05-30)
+
+Phase 3 Presentation 포팅에서 **반복되는 패턴**. 새 Renderer 추가/수정 시 체크리스트로 활용.
+
+### A. `setOrigin(0, 0)` (좌상단) → Unity 중앙 pivot
+
+TS는 `image.setOrigin(0,0)` 으로 좌상단 기준 그리기가 흔함(Block/Border/Door). Unity SpriteRenderer 기본 pivot 은 중앙 → **좌상단 의도가 절반(w/2, h/2)만큼 어긋남**.
+
+**수정 패턴 (renderer.cs):**
+```csharp
+transform.localPosition = new Vector3(state.X + targetWidthPx / 2f, state.Y + targetHeightPx / 2f, 0f);
+```
+
+적용 완료: BlocksRenderer, BordersRenderer, DoorsRenderer.
+
+### B. Sprite PPU 함정 — 1 unit = 1 px 규약
+
+D3.4 "1 unit = 1 px" 규약일 때 런타임 `Sprite.Create(tex, rect, pivot, ppu)` 의 `ppu` 인자는 **1f** 이어야. 옛 BarRenderer 가 `Sprite.Create(..., UNIT_PX=64)` → world 1x1 unit sprite → scale 0.375 → sub-pixel 로 안 보임. PPU=1 로 수정.
+
+### C. PlayfieldRoot.scale.y = −1 자식 음의 scale
+
+Y flip 위해 PlayfieldRoot 가 scale.y=−1. 자식이 SpriteRenderer 면 lossyScale 음수 → 일부 렌더 경로에서 안 보이는 케이스. **검정 플레이필드 같은 background sprite 는 PlayfieldRoot 밖(루트)에 두고 직접 world 좌표 부여** 가 안전.
+
+### D. Canvas Screen Space Overlay 가 world space 를 가림
+
+Overlay Canvas 의 풀스크린 Image (`InGamePanel/Background` 등)는 카메라가 그리는 world space (PlayfieldRoot 게임요소) 를 **무조건 덮음**. 게임플레이 영역에 배경 필요하면 **world space SpriteRenderer + sortingOrder** 로 옮길 것 (예: `WorldBackground`).
+
+---
+
+## 11. RoundIntro → InGame 자동 전이 누락 (2026-05-30)
+
+### 증상
+
+NORMAL → 스토리 → RoundIntro 진입 후 **InGame 으로 자동 전환 안 됨**. 슬라이더/Space 입력 무시 (Tick 은 InGame 일 때만 호출).
+
+### 원인
+
+`ScreenDirector.Update()` 가 `RoundIntroRemainingTime` 을 감소시키지만, **0 으로 떨어지는 순간 `RoundIntroFinishedEvent` emit 누락**. `GameFlowController` 는 그 이벤트를 받아야 InGame 으로 전이.
+
+### 해결
+
+`ScreenDirector.Update` RoundIntro 블록에서 prev > 0 && next ≤ 0 시점에 `emitPresentationEvent(new RoundIntroFinishedEvent())` 호출. TS `renderRoundIntroScreen` + `SceneRenderer` 의 동치 누락이었음.
+
+### 교훈
+
+Flow state 전이 누락은 입력 무반응처럼 보임 → "입력 안 됨" 디버깅 시 **`FlowState.Kind` 확인**이 첫 단계 (`ArkanoidFix/E8`).
+
+---
+
+## 12. BarRenderer 가 화면에 안 그려짐 — 2겹 버그 (2026-05-30)
+
+증상: `BarRenderer.enabled=true`, 자식 5개(SemiL/R/Base/StripL/R) `activeSelf=true` 인데 화면 무. 진단(`B6d`)에서:
+```
+sprite=NULL bounds=(1,1,0.2)
+```
+
+원인 두 가지:
+1. **PPU=64** → sprite world 1×1 unit → scale 0.375 → sub-pixel (§10-B)
+2. Awake 가 안 도는 경로(컴포넌트 disabled 등)에서 자식 sprite 가 설정 안 됨
+
+수정:
+- `MakeSquareSprite/MakeCircleSprite` PPU `UNIT_PX` → `1f`
+- `EnsureInitialized()` 도입 — Awake 와 Bind 양쪽에서 호출, sprite 가 null 이면 강제 재설정
+
+---
+
+## 13. PointerToPlayfield 입력 좌표 −180 어긋남 (2026-05-30)
+
+`PointerToPlayfield` 가 LayoutConfig 의 `playfieldOffsetX=180` 을 무조건 빼는데, 실제 `PlayfieldRoot.position=(0,0,0)` → 입력 좌표 −180 어긋남. bar 이동 범위 0~540 으로 잘리고 우측 25% 도달 불가.
+
+수정: `PointerToPlayfield` 가 `Transform playfieldRoot` 를 받아 `world.x - playfieldRoot.position.x` 로 동적 계산. GameManager 에 `playfieldRoot` SerializeField 추가 + 메뉴로 wire.
+
+---
+
+## 14. D1 전수 자동 wire 메뉴 (2026-05-30)
+
+UI Panel 의 SerializeField 누락이 반복됨 (GameManager 참조, retry/title 버튼, mascot 3개, skip 버튼 등). 일괄 검출·자동 생성·wire 메뉴 도입:
+
+`ArkanoidFix/D1. 전수조사 + 자동 wire + 누락 UI 생성`:
+- 모든 `Panel.gameManager` reflection 으로 자동 wire (이름 매칭)
+- GameOver/Clear: Retry/Title 두 버튼 + 마스코트 3개(4-frame anim) 자동 생성·wire
+- IntroStory: SkipButton 생성·wire
+- PauseOverlay: BGM/SFX(toggle) + Resume/Title 4 버튼 생성·wire
+- Null SerializeField 잔여 항목 진단 로그
+
+향후 새 SerializeField 추가 시 같은 패턴(`Ensure*`/`AutoWire*`) 메뉴로 보강.
+
+---
+
 ## 한 줄 요약 체크리스트 (다음에 새 Unity 환경에서 같은 프로젝트 열 때)
 
 1. ☐ asmdef 패키지 참조 누락 없는지 (`Unity.InputSystem`, `Unity.TextMeshPro`)
@@ -287,3 +378,6 @@ DYNAMIC TMP (DNF) charCount=7 vertexCount=32  ← 동적 생성 텍스트는 정
 5. ☐ Unity 재시작 후 `Window > MCP for Unity > Toggle Mcp Window` → `Connect` → `Server` → `Start Server`
 6. ☐ TMP 텍스트 안 보이면 → `TextMeshProUGUI.enabled` 부터 확인 (§7)
 7. ☐ 게임 폰트 = `Assets/Fonts/DNFBitBitv2 Dynamic SDF` (§8)
+8. ☐ 새 Renderer 추가 시 TS `setOrigin(0,0)` / sprite PPU=1 / Overlay vs world 확인 (§10)
+9. ☐ Flow 전이 누락(특히 RoundIntro→InGame) 의심 시 `FlowState.Kind` 부터 (§11)
+10. ☐ Panel SerializeField wire 누락 시 `ArkanoidFix/D1` 자동 보정 (§14)

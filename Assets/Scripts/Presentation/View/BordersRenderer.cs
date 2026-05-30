@@ -29,25 +29,27 @@ namespace Arkanoid.Presentation.View
             {
                 var b = borders[i];
                 _instances[i].SetActive(true);
-                _instances[i].transform.localPosition = new Vector3(b.X, b.Y, 0f);
 
                 var sr = _sprites[i];
                 if (sr == null) continue;
 
                 bool vertical = b.Orientation == BorderOrientation.Vertical;
                 var sprite = vertical ? verticalSprite : horizontalSprite;
+                float targetW = vertical ? borderThicknessPx : borderLengthPx;
+                float targetH = vertical ? borderLengthPx : borderThicknessPx;
                 if (sprite != null)
                 {
                     sr.sprite = sprite;
                     var nw = sprite.rect.width;
                     var nh = sprite.rect.height;
-                    float targetW = vertical ? borderThicknessPx : borderLengthPx;
-                    float targetH = vertical ? borderLengthPx : borderThicknessPx;
                     _instances[i].transform.localScale = new Vector3(
                         nw > 0f ? targetW / nw : 1f,
                         nh > 0f ? targetH / nh : 1f,
                         1f);
                 }
+                // TS renderBorders 는 setOrigin(0,0) (좌상단 기준). Unity sprite pivot 은 중앙 →
+                // sprite 중앙을 (b.X + w/2, b.Y + h/2) 로 놓아 TS 와 동일한 영역을 차지하게 보정.
+                _instances[i].transform.localPosition = new Vector3(b.X + targetW / 2f, b.Y + targetH / 2f, 0f);
             }
             for (int i = borders.Count; i < _instances.Count; i++)
                 _instances[i].SetActive(false);

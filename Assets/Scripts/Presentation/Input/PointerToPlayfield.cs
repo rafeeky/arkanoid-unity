@@ -5,37 +5,37 @@ using Arkanoid.Definitions.SO;
 namespace Arkanoid.Presentation
 {
     // Pointer (마우스/터치) 화면 좌표 → playfield 좌표 변환.
-    // 카메라 ScreenToWorldPoint 후 playfield offset 만큼 빼서 [0..width] 범위로 보정.
-    //
-    // World 좌표계 (D3.4 1 unit = 1 px, canvas 1080x1920):
-    //   - PlayfieldRoot 가 world (offsetX, canvas.height - offsetY) 에 anchor,
-    //     scale.y = -1 로 gameplay (x, y) → world (offsetX + x, canvas.height - offsetY - y).
-    //   - 따라서 world.x 에서 offsetX 를 빼면 gameplay X (0..playfield.width) 가 나온다.
+    // gameplay x = world.x - PlayfieldRoot.position.x.
+    //   PlayfieldRoot 가 (0,0) 이면 그대로 world.x. LayoutConfig offsetX 를 가정한 옛 동작은
+    //   PlayfieldRoot world position 과 다르면 입력이 어긋나므로, Transform 을 직접 사용.
     public sealed class PointerToPlayfield
     {
         private readonly Camera _camera;
-        private readonly float _offsetX;
+        private readonly Transform _playfieldRoot;
+        private readonly float _fallbackOffsetX;
 
-        // layoutConfig 미지정 시 기본값 (LayoutConfigTable 와 동일: offsetX=180).
-        public PointerToPlayfield(Camera camera, LayoutConfigSO layoutConfig)
+        public PointerToPlayfield(Camera camera, Transform playfieldRoot, LayoutConfigSO layoutConfig = null)
         {
             _camera = camera;
-            _offsetX = layoutConfig != null ? layoutConfig.Data.Playfield.OffsetX : 180f;
+            _playfieldRoot = playfieldRoot;
+            _fallbackOffsetX = layoutConfig != null ? layoutConfig.Data.Playfield.OffsetX : 0f;
         }
 
-        public PointerToPlayfield(Camera camera) : this(camera, null) { }
+        // 호환 생성자 — playfieldRoot 없이 LayoutConfig 만 (옛 호출부용).
+        public PointerToPlayfield(Camera camera, LayoutConfigSO layoutConfig)
+            : this(camera, null, layoutConfig) { }
+        public PointerToPlayfield(Camera camera) : this(camera, null, null) { }
 
-        // 드래그 중인 경우 *playfield x* 반환 (gameplay 좌표 0..width).
-        // 드래그 안 한 경우 null. (BarState.X 가 0~720 범위이므로 동일 단위.)
         public float? GetPlayfieldX()
         {
             var pointer = Pointer.current;
             if (pointer == null) return null;
-            if (!pointer.press.isPressed) return null;  // 드래그 아님
+            if (!pointer.press.isPressed) return null;
 
             var screenPos = pointer.position.ReadValue();
             var world = _camera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));
-            return world.x - _offsetX;
+            var rootX = _playfieldRoot != null ? _playfieldRoot.position.x : _fallbackOffsetX;
+            return world.x - rootX;
         }
     }
 }

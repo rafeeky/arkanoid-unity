@@ -65,3 +65,10 @@ Thumbs.db
 
 # Session handoff notes (local-only)
 HANDOFF.md
+
+# Dynamic SDF 폰트 asset (한글 11172 atlas 로 100MB 초과). ArkanoidFix/0 메뉴로 재생성 가능.
+Assets/Fonts/*Dynamic SDF.asset
+Assets/Fonts/*Dynamic SDF.asset.meta
+
+# 진단용 스크린샷
+Assets/Screenshots/

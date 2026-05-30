@@ -36,6 +36,7 @@ namespace Arkanoid.Presentation
 
         [Header("Camera + UI roots")]
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private Transform playfieldRoot;   // pointer 입력 좌표 변환에 필요 (gameplay x = world.x - playfieldRoot.x)
 
         [Header("View — Gameplay 렌더러 (Bind 매 프레임)")]
         [SerializeField] private BarRenderer barRenderer;
@@ -63,8 +64,11 @@ namespace Arkanoid.Presentation
         [Header("Audio — UnityAudio 컴포넌트 있으면 NoopAudio 대신 사용")]
         [SerializeField] private UnityAudio unityAudio;
 
-        [Header("Stage 배경 — stage index 별 sprite (bg_pixel_01~03). InGame/RoundIntro 배경 Image 에 적용")]
+        [Header("Stage 배경 — stage index 별 sprite (bg_pixel_01~03)")]
         [SerializeField] private Sprite[] stageBackgroundSprites;
+        // world space 배경 (Overlay Canvas 가 PlayfieldRoot 게임요소를 가리지 않도록 world 로 렌더)
+        [SerializeField] private SpriteRenderer stageBackgroundRenderer;
+        // (구) Overlay Image 배경 — world 전환 후 미사용이지만 호환 위해 유지
         [SerializeField] private Image[] stageBackgroundImages;
 
         // ─── Runtime services ───
@@ -162,7 +166,9 @@ namespace Arkanoid.Presentation
             _screenDirector = new ScreenDirector(_config.RoundIntroDurationMs, _visualEffectController);
 
             _inputBuilder = new UnityInputSnapshotBuilder();
-            _pointerToPlayfield = mainCamera != null ? new PointerToPlayfield(mainCamera, layoutConfigSO) : null;
+            _pointerToPlayfield = mainCamera != null
+                ? new PointerToPlayfield(mainCamera, playfieldRoot, layoutConfigSO)
+                : null;
         }
 
         private void Update()
@@ -210,8 +216,11 @@ namespace Arkanoid.Presentation
             var idx = Mathf.Clamp(stageIndex, 0, stageBackgroundSprites.Length - 1);
             var sprite = stageBackgroundSprites[idx];
             if (sprite == null) return;
-            foreach (var img in stageBackgroundImages)
-                if (img != null && img.sprite != sprite) img.sprite = sprite;
+            if (stageBackgroundRenderer != null && stageBackgroundRenderer.sprite != sprite)
+                stageBackgroundRenderer.sprite = sprite;
+            if (stageBackgroundImages != null)
+                foreach (var img in stageBackgroundImages)
+                    if (img != null && img.sprite != sprite) img.sprite = sprite;
         }
 
         private void TrySaveHighScore()
@@ -386,5 +395,9 @@ namespace Arkanoid.Presentation
         // Title NORMAL/HARD 버튼 onClick → 난이도 + 게임 시작.
         public void RequestStartGame(DifficultyKind difficulty) =>
             _gameFlowController?.RequestStartGame(difficulty);
+        public void RequestRetry() => _gameFlowController?.RequestRetry();
+        public void RequestQuitToTitle() => _gameFlowController?.RequestQuitToTitle();
+        public void SkipIntroStory() => _gameFlowController?.SkipIntroStory();
+        public void DebugForceStageClear() => _gameFlowController?.DebugForceStageClear();
     }
 }

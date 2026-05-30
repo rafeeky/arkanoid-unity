@@ -14,6 +14,9 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Sprite expandSprite;
         [SerializeField] private Sprite magnetSprite;
         [SerializeField] private Sprite laserSprite;
+        // TS playfieldLayout: ITEM_WIDTH=64, ITEM_HEIGHT=24 (BLOCK 과 동일). sprite native px → 이 값으로 fit.
+        [SerializeField] private float itemWidthPx = 64f;
+        [SerializeField] private float itemHeightPx = 24f;
 
         private readonly List<GameObject> _instances = new();
         private readonly List<SpriteRenderer> _sprites = new();
@@ -31,13 +34,24 @@ namespace Arkanoid.Presentation.View
                 _instances[i].transform.localPosition = new Vector3(it.X, it.Y, 0f);
                 if (_sprites[i] != null)
                 {
-                    _sprites[i].sprite = it.ItemType switch
+                    var sp = it.ItemType switch
                     {
                         ItemType.Expand => expandSprite,
                         ItemType.Magnet => magnetSprite,
                         ItemType.Laser => laserSprite,
                         _ => null,
                     };
+                    _sprites[i].sprite = sp;
+                    // sprite native px → ITEM_WIDTH/HEIGHT 로 fit (TS setDisplaySize 동치)
+                    if (sp != null)
+                    {
+                        var nw = sp.rect.width;
+                        var nh = sp.rect.height;
+                        _instances[i].transform.localScale = new Vector3(
+                            nw > 0f ? itemWidthPx / nw : 1f,
+                            nh > 0f ? itemHeightPx / nh : 1f,
+                            1f);
+                    }
                 }
             }
             for (int i = items.Count; i < _instances.Count; i++)

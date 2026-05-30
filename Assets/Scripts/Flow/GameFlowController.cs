@@ -51,6 +51,25 @@ namespace Arkanoid.Flow
             ApplyCommand(new StartGameRequestedCommand());
         }
 
+        // GameOver/GameClear 의 RETRY 버튼 — RoundIntro 로 리셋
+        public void RequestRetry() => ApplyCommand(new RetryRequestedCommand());
+
+        // GameOver/GameClear 의 TITLE/QUIT 버튼 — 강제 Title 전환
+        public void RequestQuitToTitle()
+        {
+            var from = _state.Kind;
+            _state.Kind = FlowStateKind.Title;
+            _state.CurrentStageIndex = 0;
+            _listener(FlowLifecycleHandler.OnEnter(FlowStateKind.Title, from));
+        }
+
+        // 인트로 스토리 스킵 (Phase 4 IntroSequenceFinishedCommand 가 RoundIntro 로 전이)
+        public void SkipIntroStory() => ApplyCommand(new IntroSequenceFinishedCommand());
+
+        // 디버그용 — 현재 stage 강제 클리어 → 다음 stage (Last 면 GameClear)
+        public void DebugForceStageClear() =>
+            ApplyCommand(new StageClearedCommand(_state.CurrentStageIndex + 1 >= _totalStageCount));
+
         private FlowCommand? TranslateGameplayEvent(GameplayEvent ev)
         {
             switch (ev)

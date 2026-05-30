@@ -43,6 +43,9 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Button hardButton;
         [SerializeField] private GameManager gameManager;
 
+        [Header("골드 부족 등 토스트")]
+        [SerializeField] private ToastView toast;
+
         // POWERUPS 영역(PowerupsTitle / Powerup0~2_Icon/Name/Desc) + 정보 배경(MascotInfoPanel/PowerupsPanel)
         // 은 기존 씬 GameObject 가 정적으로 표시 (코드 연결 불필요).
 
@@ -204,7 +207,12 @@ namespace Arkanoid.Presentation.View
             var p = portraits[_selectedIdx];
             if (IsUnlocked(p.MascotId)) return;
             var gold = PlayerPrefs.GetInt(KeyGold, 0);
-            if (gold < p.UnlockCost) return;
+            if (gold < p.UnlockCost)
+            {
+                // TS renderTitleScreen unlockButton onClick 동치 — 골드 부족 시 토스트.
+                if (toast != null) toast.Show("Not enough gold");
+                return;
+            }
 
             PlayerPrefs.SetInt(KeyGold, gold - p.UnlockCost);
             var unlockedRaw = PlayerPrefs.GetString(KeyUnlocked, "albatross");

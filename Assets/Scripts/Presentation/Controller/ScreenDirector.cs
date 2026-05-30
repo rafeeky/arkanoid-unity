@@ -34,11 +34,14 @@ namespace Arkanoid.Presentation
             // currentScreen 동기화.
             _screenState.CurrentScreen = kind;
 
-            // RoundIntro 중 타이머 감소.
+            // RoundIntro 중 타이머 감소. 0 으로 떨어지는 순간 → InGame 전환 이벤트 emit.
             if (kind == FlowStateKind.RoundIntro)
             {
-                var next = _screenState.RoundIntroRemainingTime - deltaMs;
+                var prev = _screenState.RoundIntroRemainingTime;
+                var next = prev - deltaMs;
                 _screenState.RoundIntroRemainingTime = next < 0f ? 0f : next;
+                if (prev > 0f && next <= 0f)
+                    emitPresentationEvent(new RoundIntroFinishedEvent());
             }
 
             // VisualEffectController 갱신 → ScreenState 반영.

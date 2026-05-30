@@ -46,7 +46,8 @@ namespace Arkanoid.Presentation.View
                         sprite = openingFrames[idx];
                     }
                 }
-                _instances[i].transform.localPosition = new Vector3(x, d.Y, 0f);
+                // TS renderBorders door 는 setOrigin(0,0) 좌상단. Unity sprite pivot 중앙 → 좌상단 보정.
+                _instances[i].transform.localPosition = new Vector3(x + doorWidthPx / 2f, d.Y + doorHeightPx / 2f, 0f);
 
                 var sr = _sprites[i];
                 if (sr != null && sprite != null)

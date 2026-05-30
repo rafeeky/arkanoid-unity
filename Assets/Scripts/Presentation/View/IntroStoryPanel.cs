@@ -16,6 +16,20 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Image illustration;
         [SerializeField] private PageEntry[] pages;
 
+        [Header("스토리 스킵 버튼 — 인트로 시퀀스 즉시 종료")]
+        [SerializeField] private UnityEngine.UI.Button skipButton;
+        [SerializeField] private GameManager gameManager;
+
+        private void OnEnable()
+        {
+            if (skipButton != null)
+            {
+                skipButton.onClick.RemoveListener(OnSkipClicked);
+                skipButton.onClick.AddListener(OnSkipClicked);
+            }
+        }
+        private void OnSkipClicked() => gameManager?.SkipIntroStory();
+
         public void Bind(IntroScreenViewModel vm)
         {
             gameObject.SetActive(vm.IsVisible);

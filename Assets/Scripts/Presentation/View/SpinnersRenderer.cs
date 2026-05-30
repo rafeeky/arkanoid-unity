@@ -14,6 +14,8 @@ namespace Arkanoid.Presentation.View
         [SerializeField] private Transform poolRoot;
         [SerializeField] private Color solidColor = Color.white;
         [SerializeField] private Color ghostColor = new(1f, 1f, 1f, 0.4f);
+        // SpinnerDefinition.size 와 동일 (Stage SO 의 spinner size 48px 매칭). sprite native px → 이 값으로 fit.
+        [SerializeField] private float spinnerSizePx = 48f;
 
         [Serializable]
         public struct SpriteEntry
@@ -41,7 +43,17 @@ namespace Arkanoid.Presentation.View
                 {
                     _sprites[i].color = s.Phase == SpinnerPhase.Circling ? solidColor : ghostColor;
                     var sprite = ResolveSprite(s.DefinitionId);
-                    if (sprite != null) _sprites[i].sprite = sprite;
+                    if (sprite != null)
+                    {
+                        _sprites[i].sprite = sprite;
+                        // sprite native px → spinnerSizePx(48) 로 fit. rotation 은 별도 처리됨.
+                        var nw = sprite.rect.width;
+                        var nh = sprite.rect.height;
+                        var sx = nw > 0f ? spinnerSizePx / nw : 1f;
+                        var sy = nh > 0f ? spinnerSizePx / nh : 1f;
+                        var ls = go.transform.localScale;
+                        go.transform.localScale = new Vector3(sx, sy, 1f);
+                    }
                 }
             }
             for (int i = spinners.Count; i < _instances.Count; i++)

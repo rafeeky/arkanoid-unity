@@ -48,7 +48,9 @@ namespace Arkanoid.Presentation.View
                 go.SetActive(visible);
                 if (!visible) continue;
 
-                go.transform.localPosition = new Vector3(b.X, b.Y, 0f);
+                // TS renderBlocks 는 setOrigin(0,0) 좌상단 기준. Unity sprite pivot 은 중앙 →
+                // 중앙을 (b.X + w/2, b.Y + h/2) 로 놓아 TS 와 동일 영역 차지.
+                go.transform.localPosition = new Vector3(b.X + blockWidthPx / 2f, b.Y + blockHeightPx / 2f, 0f);
                 if (_sprites[i] == null) continue;
 
                 // sprite swap — TS 처럼 PNG 색상이 sprite 자체에 들어 있음.
