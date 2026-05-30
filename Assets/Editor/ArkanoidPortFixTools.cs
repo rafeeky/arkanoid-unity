@@ -1552,6 +1552,71 @@ namespace ArkanoidPortFix
             Debug.Log($"[D1] Null SerializeField 합계: {nullCount}");
         }
 
+        // D3: InGamePanel.sliderView 자동 wire
+        [MenuItem("ArkanoidFix/D3. InGamePanel.sliderView wire")]
+        public static void WireSliderView()
+        {
+            var inGame = GameObject.Find("Canvas/InGamePanel");
+            if (inGame == null) { Debug.LogError("InGamePanel not found"); return; }
+            // SliderView 는 Magnet/Laser 게이지 컴포넌트. InGamePanel 자식 또는 별도.
+            var sv = inGame.GetComponentInChildren(FindType("Arkanoid.Presentation.View.SliderView"), true);
+            if (sv == null)
+            {
+                // 없으면 빈 GameObject 에 컴포넌트 add (게이지 표시 안 해도 null 회피)
+                var go = new GameObject("SliderView", typeof(RectTransform));
+                go.transform.SetParent(inGame.transform, false);
+                sv = go.AddComponent(FindType("Arkanoid.Presentation.View.SliderView"));
+                Debug.Log("[D3] SliderView 빈 GameObject 생성");
+            }
+            var ipType = FindType("Arkanoid.Presentation.View.InGamePanel");
+            var ipComp = inGame.GetComponent(ipType);
+            var f = ipType.GetField("sliderView", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (f == null) { Debug.LogError("[D3] InGamePanel.sliderView field not found"); return; }
+            f.SetValue(ipComp, sv);
+            EditorUtility.SetDirty(ipComp);
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            Debug.Log("[D3] InGamePanel.sliderView wired");
+        }
+
+        // C12: 모든 Canvas Button 에 TS Button 5단 디자인 단순화 적용 (Shadow + Outline + Bevel + Label outline)
+        [MenuItem("ArkanoidFix/C12. 모든 Button 스타일 TS 통일")]
+        public static void UnifyButtonStyle()
+        {
+            var canvas = GameObject.Find("Canvas");
+            if (canvas == null) { Debug.LogError("Canvas not found"); return; }
+            int styled = 0;
+            foreach (var btn in canvas.GetComponentsInChildren<Button>(true))
+            {
+                var go = btn.gameObject;
+                // 1) Outline (TS outer dark frame)
+                var outline = go.GetComponent<Outline>() ?? go.AddComponent<Outline>();
+                outline.effectColor = Color.black;
+                outline.effectDistance = new Vector2(3f, 3f);
+                EditorUtility.SetDirty(outline);
+                // 2) Shadow (TS drop shadow 7px)
+                var shadow = go.GetComponent<Shadow>();
+                if (shadow == null || shadow == outline)
+                {
+                    // Outline 도 Shadow 의 서브클래스라 GetComponent 가 같이 잡힘 → 별도 추가
+                    shadow = go.AddComponent<Shadow>();
+                }
+                shadow.effectColor = new Color(0f, 0f, 0f, 0.55f);
+                shadow.effectDistance = new Vector2(4f, -4f);
+                EditorUtility.SetDirty(shadow);
+                // 3) Label TMP outline + bold (TS 흰 굵은 텍스트)
+                foreach (var t in go.GetComponentsInChildren<TMP_Text>(true))
+                {
+                    t.outlineColor = Color.black;
+                    t.outlineWidth = 0.2f;
+                    t.fontStyle |= FontStyles.Bold;
+                    EditorUtility.SetDirty(t);
+                }
+                styled++;
+            }
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            Debug.Log($"[C12] {styled} 버튼 스타일 통일 (Outline 3px + Shadow 4px + Label outline)");
+        }
+
         [MenuItem("ArkanoidFix/9. Save active scene")]
         public static void SaveScene()
         {
